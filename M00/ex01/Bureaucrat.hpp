@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/18 08:29:03 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/10/18 08:29:07 by ayakoubi         ###   ########.fr       */
+/*   Created: 2023/10/18 08:29:56 by ayakoubi          #+#    #+#             */
+/*   Updated: 2023/10/19 10:56:55 by ayakoubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 
 #include <iostream>
+class Form{};
 
 class Bureaucrat
 {
@@ -41,7 +42,7 @@ class Bureaucrat
 			public:
 				virtual const char* what() const throw();
 		};
-
+		void	signForm(const Form& form) const;
 };
 
 std::ostream& operator << (std::ostream& out, const Bureaucrat& instance);

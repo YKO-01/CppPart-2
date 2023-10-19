@@ -5,12 +5,12 @@
 #                                                     +:+ +:+         +:+      #
 #    By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/10/15 08:31:44 by ayakoubi          #+#    #+#              #
-#    Updated: 2023/10/15 08:32:11 by ayakoubi         ###   ########.fr        #
+#    Created: 2023/10/18 08:29:44 by ayakoubi          #+#    #+#              #
+#    Updated: 2023/10/19 11:14:47 by ayakoubi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = Bureaucrat 
+NAME = main 
 
 
 ###############	COMPILATION	#################
@@ -20,7 +20,7 @@ CPPFLAGS =	-Wall -Wextra -Werror -std=c++98
 
 ###########	SRC & OBJ	#################
 
-SRC	:=	main Bureaucrat
+SRC	:=	main Bureaucrat Form
 
 OBJ	:=	$(addsuffix .o, $(SRC))
 SRC	:=	$(addsuffix .c, $(SRC))

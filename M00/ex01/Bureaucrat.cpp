@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/18 08:29:15 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/10/18 11:24:34 by ayakoubi         ###   ########.fr       */
+/*   Created: 2023/10/18 08:30:09 by ayakoubi          #+#    #+#             */
+/*   Updated: 2023/10/19 11:14:37 by ayakoubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,4 +83,14 @@ void	Bureaucrat::decrement()
 		return ;
 	}
 	throw Bureaucrat::GradeTooHighException();
+}
+
+void	Bureaucrat::signForm(const Form& form) const
+{
+	form.beSigned(*this);
+	if (getSing == true)
+		std::cout << this->getName() << "signed " << form.getName() << std::enld;
+	else
+		std::cout << this->getName() << "couldn't sign " << form.getName()
+			<< "because " << std::endl;
 }
