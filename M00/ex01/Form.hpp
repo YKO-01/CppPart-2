@@ -6,13 +6,14 @@
 /*   By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 08:35:10 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/10/19 10:45:17 by ayakoubi         ###   ########.fr       */
+/*   Updated: 2023/10/20 10:17:16 by ayakoubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FORM_H
 #define FORM_H
 
+class Bureaucrat;
 #include "Bureaucrat.hpp"
 
 class Form
@@ -22,10 +23,10 @@ class Form
 		bool sign;
 		const int grade_sign;
 		const int grade_exec;
-	public;
+	public:
 		Form();
-		Form(const From& copy);
-		Form(std::string name, bool sign, int grade_sign, int grade_exec);
+		Form(const Form& copy);
+		Form(std::string name, bool sign, int gSign, int gExec);
 		~Form();
 		Form&	operator = (const Form& copy);
 		class GradeTooHighException : public std::exception
@@ -42,6 +43,8 @@ class Form
 		bool		getSign() const;
 		int			getGradeSign() const;
 		int			getGradeExec() const;
+		void		beSigned(const Bureaucrat& bureaucrat);
+		
 };
 
 std::ostream& operator << (std::ostream& out, const Form& instance);

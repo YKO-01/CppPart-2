@@ -6,7 +6,7 @@
 /*   By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 08:29:56 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/10/19 10:56:55 by ayakoubi         ###   ########.fr       */
+/*   Updated: 2023/10/20 10:46:10 by ayakoubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 
 
 #include <iostream>
-class Form{};
+class Form;
+#include "Form.hpp"
 
 class Bureaucrat
 {
@@ -42,7 +43,7 @@ class Bureaucrat
 			public:
 				virtual const char* what() const throw();
 		};
-		void	signForm(const Form& form) const;
+		void	signForm(Form& form) const;
 };
 
 std::ostream& operator << (std::ostream& out, const Bureaucrat& instance);
