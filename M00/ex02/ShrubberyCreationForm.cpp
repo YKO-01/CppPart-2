@@ -6,7 +6,7 @@
 /*   By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 09:53:19 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/10/21 14:27:30 by ayakoubi         ###   ########.fr       */
+/*   Updated: 2023/10/22 13:25:35 by ayakoubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,25 +35,47 @@ ShrubberyCreationForm&	ShrubberyCreationForm::operator = (const ShrubberyCreatio
 }
 void	ShrubberyCreationForm::execute(Bureaucrat const &executer) const
 {
-	int i;
-	int j;
-	int k;
-	int tage;
-	std::ofstream outfile;
-	(void) executer;
-
-	outfile.open(name + "_shrubbery");
-	if (!outfile.is_open())
+	if (executer.getGrade() <= sign && executer.getGrade() <= exec)
 	{
-		std::cout << "error in openfile" << std::endl;
-		return ;
+		std::ofstream outfile;
+		outfile.open(name + "_shrubbery");
+		if (!outfile.is_open())
+		{
+			std::cout << "error in openfile" << std::endl;
+			return ;
+		}
+		int height = 4;
+		int tage = -1;
+		int	i;
+		int j;
+		int k;
+		int width = 0;
+		int margin = 2;
+		std::string content;
+		while (tage++ < 2)
+		{
+			i = 0;
+    		while (i++ <= height)
+			{
+				j = 0;
+				while (j++ <= height - i + margin)
+					content += " ";
+				k = 0;
+				while (k++ <= (2 * i - 1 + (width * 2)))
+					content += "*";
+				content += "\n";
+			}
+			width++;
+			margin--;
+		}
+		for (i = 0; i <= height - 1 + width; i++)
+		{
+			content += " ";
+		}
+		content +=  "|\n";
+		outfile << content;
+		outfile.close();
 	}
-	i = -1;
-	tage = 4;
-	k = 0;
-	while (i < 0)
-	{
-
-
-	}
+	else
+		throw GradeTooHighException();
 }

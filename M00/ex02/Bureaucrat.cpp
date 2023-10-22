@@ -6,7 +6,7 @@
 /*   By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 08:30:09 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/10/20 11:11:18 by ayakoubi         ###   ########.fr       */
+/*   Updated: 2023/10/22 13:42:02 by ayakoubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,3 +99,18 @@ void	Bureaucrat::signForm(Form& form) const
 			<< " because " << e.what() << std::endl;
 	}
 }
+
+void	Bureaucrat::executeForm(Form const &form) const
+{
+	try
+	{
+		form.execute(*this);
+		std::cout << this->getName() << " executed " << form.getName() << std::endl;
+	}
+	catch (std::exception& e)
+	{
+		std::cout << this->getName() << " couldn't executed " << form.getName()
+			<< " because " << e.what() << std::endl;
+	}
+}
+

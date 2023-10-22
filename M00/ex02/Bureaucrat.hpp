@@ -6,7 +6,7 @@
 /*   By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 08:29:56 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/10/21 10:18:28 by ayakoubi         ###   ########.fr       */
+/*   Updated: 2023/10/22 13:37:35 by ayakoubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ class Bureaucrat
 				virtual const char* what() const throw();
 		};
 		void	signForm(Form& form) const;
+		void	executeForm(Form const &form) const;
 };
 
 std::ostream& operator << (std::ostream& out, const Bureaucrat& instance);

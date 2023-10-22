@@ -6,7 +6,7 @@
 /*   By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 08:30:22 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/10/21 11:56:43 by ayakoubi         ###   ########.fr       */
+/*   Updated: 2023/10/22 13:40:16 by ayakoubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,15 @@ int main(void)
 
 	try
 	{
-		Bureaucrat b("hello", 18);
+		Bureaucrat b("hello", 138);
 		ShrubberyCreationForm s;
+		Form *f = new ShrubberyCreationForm();
+
 		//Form	f("form", false, 16, 3);
 		//std::cout << f << std::endl;
 		//std::cout << b << std::endl;
 		//f.signForm(f);
-		s.execute(b);
+		b.executeForm(*f);
 	}
 	catch (std::exception& e)
 	{
