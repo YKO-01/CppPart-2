@@ -6,7 +6,7 @@
 /*   By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 09:53:19 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/10/22 13:25:35 by ayakoubi         ###   ########.fr       */
+/*   Updated: 2023/10/22 14:32:41 by ayakoubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,10 @@
  
 //===== constructors & destructor =============================
 ShrubberyCreationForm::ShrubberyCreationForm() : sign(145), exec(137)
+{
+}
+
+ShrubberyCreationForm::ShrubberyCreationForm(std::string target) : target(target), sign(145), exec(137)
 {
 }
 
@@ -38,7 +42,7 @@ void	ShrubberyCreationForm::execute(Bureaucrat const &executer) const
 	if (executer.getGrade() <= sign && executer.getGrade() <= exec)
 	{
 		std::ofstream outfile;
-		outfile.open(name + "_shrubbery");
+		outfile.open(this->target + "_shrubbery");
 		if (!outfile.is_open())
 		{
 			std::cout << "error in openfile" << std::endl;
