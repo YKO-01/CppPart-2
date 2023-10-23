@@ -6,7 +6,7 @@
 /*   By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 08:30:22 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/10/22 14:33:24 by ayakoubi         ###   ########.fr       */
+/*   Updated: 2023/10/23 12:19:39 by ayakoubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int main(void)
 		Bureaucrat b("hello", 38);
 		ShrubberyCreationForm s;
 		Form *f = new ShrubberyCreationForm("gym");
+
 
 		//Form	f("form", false, 16, 3);
 		//std::cout << f << std::endl;
