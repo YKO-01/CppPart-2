@@ -13,12 +13,20 @@
 #include "PresidentialPardonForm.hpp"
  
 //===== constructors & destructor =============================
-PresidentialPardonForm::PresidentialPardonForm()
+PresidentialPardonForm::PresidentialPardonForm() : sign(25), exec(5)
 {
+}
+
+PresidentialPardonForm::PresidentialParadonForm(std::string target)
+{
+	target = target;
+	sign = 25;
+	exec = 5;
 }
 
 PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm& copy)
 {
+	*this = copy;
 }
 
 PresidentialPardonForm::~PresidentialPardonForm()
@@ -26,10 +34,21 @@ PresidentialPardonForm::~PresidentialPardonForm()
 }
 
 //===== operators ==============================================
-PresidentialPardonForm&	operator = (const PresidentialPardonForm& copy)
+PresidentialPardonForm&	PresidentialParadonForm::operator = (const PresidentialPardonForm& copy)
 {
+	this->target = copy.target;
+	this->sign = copy.sign;
+	this->exec = copy.exec;
+	return (*this);
 }
 
-std::ostream& operator << (std::ostream& out, const PresidentialPardonForm& instance);
+void	PresidentialPardonForm::execute(const Bureaucrat &execter) const
 {
+	if (executer.getGrade() <= sign && executer.getGrade() <= exec)
+	{
+		std::cout << this->target
+			<< " has been pardoned by Zaphod Beeblebrox" << std::endl; 		
+	}
+	else
+		throw GradeTooHighException();
 }

@@ -15,18 +15,20 @@
 
 #include "AForm.hpp"
 
-class PresidentialPardonForm
+class PresidentialPardonForm : public Form
 {
 	 private:
-
+		std::string target;
+		int sign;
+		int exec;
 	 public:
 		 PresidentialPardonForm();
+		 PresidentialPardonForm(std::string target);
 		 PresidentialPardonForm(const PresidentialPardonForm& copy);
 		 ~PresidentialPardonForm();
 		 PresidentialPardonForm& operator = (const PresidentialPardonForm& copy);
+		 void	execute(const Bureaucrat &executer) const;
 
 };
-
-std::ostream& operator << (std::ostream& out, const PresidentialPardonForm& instance);
 
 #endif

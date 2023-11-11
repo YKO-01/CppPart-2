@@ -15,18 +15,20 @@
 
 #include "AForm"
 
-class RobotomyRequestForm
+class RobotomyRequestForm : public Form
 {
 	 private:
-
+		std::string target;
+		int sign;
+		int exec;
 	 public:
-		 RobotomyRequestForm();
-		 RobotomyRequestForm(const RobotomyRequestForm& copy);
-		 ~RobotomyRequestForm();
-		 RobotomyRequestForm& operator = (const RobotomyRequestForm& copy);
-
+		RobotomyRequestForm();
+		RobotomyRequestForm(const RobotomyRequestForm& copy);
+		RobotomyRequestForm(std::string target);
+		~RobotomyRequestForm();
+		RobotomyRequestForm& operator = (const RobotomyRequestForm& copy);
+		void	execute(Bureaucrat const &executer) const;		
 };
 
-std::ostream& operator << (std::ostream& out, const RobotomyRequestForm& instance);
 
 #endif

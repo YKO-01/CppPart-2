@@ -13,12 +13,20 @@
 #include "RobotomyRequestForm.hpp"
 
 //===== constructors & destructor =============================
-RobotomyRequestForm::RobotomyRequestForm()
+RobotomyRequestForm::RobotomyRequestForm(): sign(72), exec(45)
 {
+}
+
+RobotomyRequestForm::RobotomyRequestForm(std::string target)
+{
+	this->target = target;
+	sign = 72;
+	exec = 45;
 }
 
 RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm& copy)
 {
+	*this = copy;
 }
 
 RobotomyRequestForm::~RobotomyRequestForm()
@@ -26,11 +34,25 @@ RobotomyRequestForm::~RobotomyRequestForm()
 }
 
 //===== operators ==============================================
-RobotomyRequestForm&	operator = (const RobotomyRequestForm& copy)
+RobotomyRequestForm&	RobotmyRequestForm::operator = (const RobotomyRequestForm& copy)
 {
+	this->target = copy.target;
+	this->sign = copy.sign;
+	this->exec = copy.exec;
+	return (*this);
 }
 
-std::ostream& operator << (std::ostream& out, const RobotomyRequestForm& instance);
+void	RobotmyRequestForm::execute(const Bureaucrat &executer) const
 {
+	if (executer.getGrade() <= sign && executer.getGrade() <= exec)
+	{
+		std::cout << this->target
+			<< " has ben robotomized successfully 50% of the time"
+			<< std::endl;
+	}
+	else
+	{
+		std::cout << "the robotomy failed" << std::endl;
+		throw GradeTooHighExeception();
+	}
 }
-

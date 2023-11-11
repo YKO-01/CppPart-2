@@ -17,7 +17,7 @@ int main(void)
 
 	try
 	{
-		Bureaucrat b("hello", 38);
+		Bureaucrat b("hello", 140);
 		ShrubberyCreationForm s;
 		Form *f = new ShrubberyCreationForm("gym");
 
