@@ -6,7 +6,7 @@
 /*   By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 08:30:22 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/11/15 13:19:05 by ayakoubi         ###   ########.fr       */
+/*   Updated: 2023/11/16 11:11:40 by ayakoubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,9 @@ int main(void)
 		Bureaucrat b("bureau", 35);
 		Intern someRandomIntern;
 		Form* rrf;
-		rrf = someRandomIntern.makeForm("robotomy request", "Bender");
-		rrf->execute(b);
+		rrf = someRandomIntern.makeForm("hhh request", "Bender");
+		if (rrf)
+			rrf->execute(b);
 	}
 	catch(std::exception& e)
 	{
