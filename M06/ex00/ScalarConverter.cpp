@@ -1,6 +1,7 @@
 #include "ScalarConverter.hpp"
 #include <string>
 #include <sstream>
+#include <iomanip>
 
 ScalarConverter::ScalarConverter()
 {
@@ -42,7 +43,7 @@ std::string getType(std::string arg)
 	if (len == 0 && (arg[0] < '0' || arg[0] > '9'))
 		return ("char");
 	if (arg[len] == 'f')
-		return ("flaot");
+		return ("float");
 	if (find(arg.begin(), arg.end(), '.') != arg.end())
 		return ("double");
 	return ("int");
@@ -50,7 +51,7 @@ std::string getType(std::string arg)
 
 void	fromChar(char c)
 {
-	std::cout << "char: " << c << std::endl;
+	std::cout << "char: '" << c << "'" << std::endl;
 	std::cout << "int: " << static_cast<int>(c) << std::endl;
 	std::cout << "float: " << static_cast<float>(c) << ".0f" << std::endl;
 	std::cout << "double: " << static_cast<double>(c) << ".0" << std::endl;
@@ -68,13 +69,48 @@ void	fromInt(std::string arg)
 	if (nbr < 38 || nbr > 127)
 		std::cout << "char: Non displayable" << std::endl;
 	else
-		std::cout << "char: " << static_cast<char>(nbr) << std::endl;
+		std::cout << "char: '" << static_cast<char>(nbr) << "'" << std::endl;
 	std::cout << "int: " << nbr << std::endl;
 	std::cout << "float: " << static_cast<float>(nbr) << ".0f" << std::endl;
 	std::cout << "double: " << static_cast<double>(nbr) << ".0" << std::endl;
 
 }
 			
+void	fromFloat(std::string arg)
+{
+	std::istringstream varFloat(arg);
+	float nbr;
+	varFloat >> nbr;
+	if (nbr < 38 || nbr > 127)
+		std::cout << "char: Non displayable" << std::endl;
+	else
+		std::cout << "char: '" << static_cast<char>(nbr) << "'" << std::endl;
+	if (nbr < INT_MIN || nbr > INT_MAX)
+		std::cout << "int: impossible" << std::endl;
+	else
+		std::cout << "int: " << static_cast<int>(nbr) << std::endl;
+	std::cout << "float: " << std::fixed << std::setprecision(1) << nbr << "f" << std::endl;
+	std::cout << "double: " << static_cast<double>(nbr) << std::endl;
+
+}
+
+void	fromDouble(std::string arg)
+{
+	std::istringstream varFloat(arg);
+	double nbr;
+	varFloat >> nbr;
+	if (nbr < 38 || nbr > 127)
+		std::cout << "char: Non displayable" << std::endl;
+	else
+		std::cout << "char: '" << static_cast<char>(nbr) << "'" << std::endl;
+	if (nbr < INT_MIN || nbr > INT_MAX)
+		std::cout << "int: impossible" << std::endl;
+	else
+		std::cout << "int: " << static_cast<int>(nbr) << std::endl;
+	std::cout << "float: " << std::fixed << std::setprecision(1) << static_cast<float>(nbr) << "f" << std::endl;
+	std::cout << "double: " << nbr << std::endl;
+
+}
 
 void ScalarConverter::convert(std::string argument)
 {
@@ -94,9 +130,12 @@ void ScalarConverter::convert(std::string argument)
 			fromChar(argument[0]);
 		if (type == "int")
 			fromInt(argument);
-	/*	if (type == "float")
-			fromFloat(argment);
+		if (type == "float")
+		{
+			argument.erase(argument.length() - 1);
+			fromFloat(argument);
+		}
 		if (type == "double")
-			fromdouble(argument);*/
+			fromDouble(argument);
 	}	
 }
