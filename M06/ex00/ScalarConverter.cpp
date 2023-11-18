@@ -3,6 +3,8 @@
 #include <sstream>
 #include <iomanip>
 
+// __ Constructo & Destructor _______________________________________________________________________
+// ==================================================================================================
 ScalarConverter::ScalarConverter()
 {
 }
@@ -11,7 +13,8 @@ ScalarConverter::~ScalarConverter()
 {
 }
 
-
+// __ Check Conver __________________________________________________________________________________
+// ==================================================================================================
 bool	checkConvert(std::string arg)
 {
 	int i = -1;
@@ -35,8 +38,9 @@ bool	checkConvert(std::string arg)
 	}
 	return (true);
 }
-	
 
+// __ Get Type  _____________________________________________________________________________________
+// ==================================================================================================
 std::string getType(std::string arg)
 {
 	int len = (int)arg.length() - 1;
@@ -49,6 +53,18 @@ std::string getType(std::string arg)
 	return ("int");
 }
 
+// __ Display Impossible ____________________________________________________________________________
+// ==================================================================================================
+void	displayImpossible()
+{
+	std::cout << "char: impossible" << std::endl;
+	std::cout << "int: impossible" << std::endl;
+	std::cout << "float: nanf" << std::endl;
+	std::cout << "double: nan" << std::endl;
+}
+
+// __ Cast From Char ________________________________________________________________________________
+// ==================================================================================================
 void	fromChar(char c)
 {
 	std::cout << "char: '" << c << "'" << std::endl;
@@ -57,6 +73,8 @@ void	fromChar(char c)
 	std::cout << "double: " << static_cast<double>(c) << ".0" << std::endl;
 }
 
+// __ Cast From Int _________________________________________________________________________________
+// ==================================================================================================
 void	fromInt(std::string arg)
 {
 	std::istringstream varInt(arg);
@@ -66,22 +84,27 @@ void	fromInt(std::string arg)
 		std::cout << "char: impossible" << std::endl;
 		std::cout << "int: impossible" << std::endl;
 	}
-	if (nbr < 38 || nbr > 127)
-		std::cout << "char: Non displayable" << std::endl;
 	else
-		std::cout << "char: '" << static_cast<char>(nbr) << "'" << std::endl;
-	std::cout << "int: " << nbr << std::endl;
-	std::cout << "float: " << static_cast<float>(nbr) << ".0f" << std::endl;
-	std::cout << "double: " << static_cast<double>(nbr) << ".0" << std::endl;
+	{
+		if (nbr < 38 || nbr > 126)
+			std::cout << "char: Non displayable" << std::endl;
+		else
+			std::cout << "char: '" << static_cast<char>(nbr) << "'" << std::endl;
+		std::cout << "int: " << nbr << std::endl;
+	}
+	std::cout << "float: " << std::fixed << std::setprecision(1) << static_cast<float>(nbr) << "f" << std::endl;
+	std::cout << "double: " << static_cast<double>(nbr) << std::endl;
 
 }
-			
+// __ Cast From Float _______________________________________________________________________________
+// ==================================================================================================
+		
 void	fromFloat(std::string arg)
 {
 	std::istringstream varFloat(arg);
 	float nbr;
 	varFloat >> nbr;
-	if (nbr < 38 || nbr > 127)
+	if (nbr < 38 || nbr > 126)
 		std::cout << "char: Non displayable" << std::endl;
 	else
 		std::cout << "char: '" << static_cast<char>(nbr) << "'" << std::endl;
@@ -93,13 +116,15 @@ void	fromFloat(std::string arg)
 	std::cout << "double: " << static_cast<double>(nbr) << std::endl;
 
 }
+// __ Cast From Double ______________________________________________________________________________
+// ==================================================================================================
 
 void	fromDouble(std::string arg)
 {
 	std::istringstream varFloat(arg);
 	double nbr;
 	varFloat >> nbr;
-	if (nbr < 38 || nbr > 127)
+	if (nbr < 38 || nbr > 126)
 		std::cout << "char: Non displayable" << std::endl;
 	else
 		std::cout << "char: '" << static_cast<char>(nbr) << "'" << std::endl;
@@ -111,17 +136,14 @@ void	fromDouble(std::string arg)
 	std::cout << "double: " << nbr << std::endl;
 
 }
+// __ ScalarConverter Convert _______________________________________________________________________
+// ==================================================================================================
 
 void ScalarConverter::convert(std::string argument)
 {
 	std::string type;
 	if (checkConvert(argument) == false)
-	{	
-		std::cout << "char: impossible" << std::endl;
-		std::cout << "int: impossible" << std::endl;
-		std::cout << "float: nanf" << std::endl;
-		std::cout << "double: nan" << std::endl;
-	}
+		displayImpossible();
 	else
 	{
 		type = getType(argument);
