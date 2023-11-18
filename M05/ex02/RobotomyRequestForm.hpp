@@ -6,7 +6,7 @@
 /*   By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 09:49:16 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/11/14 12:48:09 by ayakoubi         ###   ########.fr       */
+/*   Updated: 2023/11/18 17:04:00 by ayakoubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ class RobotomyRequestForm : public Form
 		RobotomyRequestForm(std::string target);
 		~RobotomyRequestForm();
 		RobotomyRequestForm& operator = (const RobotomyRequestForm& copy);
-		std::string	getName() const;
 		void	execute(Bureaucrat const &executer) const;	
 };
 

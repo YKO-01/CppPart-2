@@ -6,13 +6,14 @@
 /*   By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 09:52:31 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/11/15 10:34:10 by ayakoubi         ###   ########.fr       */
+/*   Updated: 2023/11/18 17:13:34 by ayakoubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PresidentialPardonForm.hpp"
- 
-//===== constructors & destructor =============================
+
+// __ constructor & Destructor _________________________________________________
+// =============================================================================
 PresidentialPardonForm::PresidentialPardonForm() : sign(25), exec(5)
 {
 }
@@ -33,7 +34,8 @@ PresidentialPardonForm::~PresidentialPardonForm()
 {
 }
 
-//===== operators ==============================================
+// __ Operators ________________________________________________________________
+// =============================================================================
 PresidentialPardonForm&	PresidentialPardonForm::operator = (const PresidentialPardonForm& copy)
 {
 	this->target = copy.target;
@@ -42,6 +44,8 @@ PresidentialPardonForm&	PresidentialPardonForm::operator = (const PresidentialPa
 	return (*this);
 }
 
+// __ Presidential execute _____________________________________________________
+// =============================================================================
 void	PresidentialPardonForm::execute(const Bureaucrat &executer) const
 {
 	if (executer.getGrade() <= sign && executer.getGrade() <= exec)

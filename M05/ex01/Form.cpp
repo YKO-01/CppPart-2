@@ -6,12 +6,14 @@
 /*   By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 11:27:43 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/11/14 13:00:38 by ayakoubi         ###   ########.fr       */
+/*   Updated: 2023/11/18 13:17:36 by ayakoubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Form.hpp"
 
+// __ Constructor & Destructor _________________________________________________
+// =============================================================================
 Form::Form(): name("none"), sign(false), grade_sign(0), grade_exec(0)
 {
 }
@@ -26,16 +28,29 @@ Form::Form(const Form& copy): name(copy.name), grade_sign(copy.grade_sign), grad
 	*this = copy;
 }
 
+Form::~Form()
+{
+}
+
+// __ Operators ________________________________________________________________
+// =============================================================================
 Form&	Form::operator=(const Form& copy)
 {
 	this->sign = copy.sign;
 	return (*this);
 }
 
-Form::~Form()
+std::ostream&	operator << (std::ostream& out, const Form& instance)
 {
+	out << instance.getName() << std::endl;
+	out << instance.getSign() << std::endl;
+	out << instance.getGradeSign() << std::endl;
+	out << instance.getGradeExec() << std::endl;
+	return (out);
 }
 
+// __ Throw Exception __________________________________________________________
+// =============================================================================
 const char*	Form::GradeTooHighException::what() const throw()
 {
 	return ("Exception: in GradeToohighException");
@@ -46,6 +61,8 @@ const char* Form::GradeTooLowException::what() const throw()
 	return ("Exception: in GradeTooLowException");
 }
 
+// __ Get (Name, sign, Gradesign, GradeExec) ___________________________________
+// =============================================================================
 std::string	Form::getName() const
 {
 	return (this->name);
@@ -66,15 +83,8 @@ int Form::getGradeExec() const
 	return (this->grade_exec);
 }
 
-std::ostream&	operator << (std::ostream& out, const Form& instance)
-{
-	out << instance.getName() << std::endl;
-	out << instance.getSign() << std::endl;
-	out << instance.getGradeSign() << std::endl;
-	out << instance.getGradeExec() << std::endl;
-	return (out);
-}
-
+// __ Form Be signed ___________________________________________________________
+// =============================================================================
 void	Form::beSigned(const Bureaucrat& bureaucrat)
 {
 	if (this->grade_sign > bureaucrat.getGrade())

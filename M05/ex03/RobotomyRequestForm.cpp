@@ -6,13 +6,14 @@
 /*   By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 09:50:33 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/11/14 13:07:47 by ayakoubi         ###   ########.fr       */
+/*   Updated: 2023/11/18 17:14:25 by ayakoubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RobotomyRequestForm.hpp"
 
-//===== constructors & destructor =============================
+// __ Constructor & Destructor _________________________________________________
+// =============================================================================
 RobotomyRequestForm::RobotomyRequestForm():target("default"), sign(72), exec(45)
 {
 }
@@ -33,7 +34,8 @@ RobotomyRequestForm::~RobotomyRequestForm()
 {
 }
 
-//===== operators ==============================================
+// __ Operators ________________________________________________________________
+// =============================================================================
 RobotomyRequestForm&	RobotomyRequestForm::operator = (const RobotomyRequestForm& copy)
 {
 	this->target = copy.target;
@@ -42,11 +44,8 @@ RobotomyRequestForm&	RobotomyRequestForm::operator = (const RobotomyRequestForm&
 	return (*this);
 }
 
-std::string RobotomyRequestForm::getName() const
-{
-	return (this->target);
-}
-
+// __ Rbotomy Execute __________________________________________________________
+// =============================================================================
 void	RobotomyRequestForm::execute(const Bureaucrat &executer) const
 {
 	if (executer.getGrade() <= sign && executer.getGrade() <= exec)

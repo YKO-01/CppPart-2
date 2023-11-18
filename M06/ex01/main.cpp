@@ -5,19 +5,9 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/18 10:07:07 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/11/18 10:07:08 by ayakoubi         ###   ########.fr       */
+/*   Created: 2023/11/18 11:41:22 by ayakoubi          #+#    #+#             */
+/*   Updated: 2023/11/18 11:42:42 by ayakoubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ScalarConverter.hpp"
 
-int main(int ac, char **av)
-{
-	if (ac != 2)
-		return (0);
-	ScalarConverter sc;
-	sc.convert(av[1]);
-	//std::cout << "hello word" << std::endl;
-	return (0);
-}

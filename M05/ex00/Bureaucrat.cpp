@@ -6,12 +6,14 @@
 /*   By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 08:29:15 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/11/12 10:29:54 by ayakoubi         ###   ########.fr       */
+/*   Updated: 2023/11/18 12:53:59 by ayakoubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
 
+// __ constructor & Destructor _________________________________________________
+// =============================================================================
 Bureaucrat::Bureaucrat() : name("none"), grade(1)
 {
 }
@@ -33,6 +35,8 @@ Bureaucrat::~Bureaucrat()
 {
 }
 
+// __ Operators ________________________________________________________________
+// =============================================================================
 Bureaucrat&		Bureaucrat::operator=(const Bureaucrat& copy)
 {
 	this->grade = copy.grade;
@@ -45,16 +49,22 @@ std::ostream&	operator<<(std::ostream& out, const Bureaucrat& instance)
 	return (out);
 }
 
+// __ Bureaucrat Get Name ______________________________________________________
+// =============================================================================
 std::string	Bureaucrat::getName() const
 {
 	return (this->name);
 }
 
+// __ Bureaucrat Get Grade _____________________________________________________
+// =============================================================================
 int	Bureaucrat::getGrade() const
 {
 	return (this->grade);
 }
 
+// __ Throw Exception __________________________________________________________
+// =============================================================================
 const char*	Bureaucrat::GradeTooHighException::what() const throw()
 {
 	return ("exeption in GradeTooHighException !");
@@ -65,6 +75,8 @@ const char*	Bureaucrat::GradeTooLowException::what() const throw()
 	return ("exeption in GradeTooLowException !");
 }
 
+// __ Increment & Decrement ____________________________________________________
+// =============================================================================
 void	Bureaucrat::increment()
 {
 	if (this->getGrade() < 150)

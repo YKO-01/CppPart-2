@@ -6,13 +6,14 @@
 /*   By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 09:53:19 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/11/15 10:33:08 by ayakoubi         ###   ########.fr       */
+/*   Updated: 2023/11/18 17:15:30 by ayakoubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ShrubberyCreationForm.hpp"
  
-//===== constructors & destructor =============================
+// __ Constructor & Destructor _________________________________________________
+// =============================================================================
 ShrubberyCreationForm::ShrubberyCreationForm() : sign(145), exec(137)
 {
 }
@@ -30,13 +31,17 @@ ShrubberyCreationForm::~ShrubberyCreationForm()
 {
 }
 
-//===== operators ==============================================
+// __ Operators ________________________________________________________________
+// =============================================================================
 ShrubberyCreationForm&	ShrubberyCreationForm::operator = (const ShrubberyCreationForm& copy)
 {
 	sign = copy.sign;
 	exec = copy.exec;
 	return (*this);
 }
+
+// __ Shrubbery Execute ________________________________________________________
+// =============================================================================
 void	ShrubberyCreationForm::execute(Bureaucrat const &executer) const
 {
 	if (executer.getGrade() <= sign && executer.getGrade() <= exec)
