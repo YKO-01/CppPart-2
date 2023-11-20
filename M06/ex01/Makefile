@@ -6,7 +6,7 @@
 #    By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/18 11:34:45 by ayakoubi          #+#    #+#              #
-#    Updated: 2023/11/18 19:25:25 by ayakoubi         ###   ########.fr        #
+#    Updated: 2023/11/20 14:21:14 by ayakoubi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ NAME	=	main
 CPP	=	c++
 CPPFLAGS=	-Wall -Wextra -Werror -std=c++98
 
-SRC	:=	main ScalarConverter
+SRC	:=	main Serializer
 OBJ	:=	$(addsuffix .o, $(SRC))
 SRC	:=	$(addsuffix .cpp, $(SRC))
 

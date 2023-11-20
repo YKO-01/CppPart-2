@@ -6,7 +6,7 @@
 /*   By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 19:32:30 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/11/18 20:34:38 by ayakoubi         ###   ########.fr       */
+/*   Updated: 2023/11/20 18:13:32 by ayakoubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,14 @@ Serializer::~Serializer()
 
 // __ Serialize ________________________________________________________________
 // =============================================================================
-uintptr_t	serialize(Data* ptr)
+uintptr_t	Serializer::serialize(Data* ptr)
 {
+	return (reinterpret_cast<uintptr_t>(ptr));
+}
+
+// __ Deserialize ______________________________________________________________
+// =============================================================================
+Data*	Serializer::deserialize(uintptr_t raw)
+{
+	return (reinterpret_cast<Data*>(raw));
 }

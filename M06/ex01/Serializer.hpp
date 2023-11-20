@@ -6,7 +6,7 @@
 /*   By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 11:43:58 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/11/18 20:34:33 by ayakoubi         ###   ########.fr       */
+/*   Updated: 2023/11/20 17:40:23 by ayakoubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,6 @@ class Serializer
 		~Serializer();
 		uintptr_t serialize(Data* ptr);
 		Data* deserialize(uintptr_t raw);
-}
+};
 
 #endif
