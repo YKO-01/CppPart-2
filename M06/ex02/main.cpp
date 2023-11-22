@@ -6,7 +6,7 @@
 /*   By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/21 11:13:06 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/11/21 12:06:38 by ayakoubi         ###   ########.fr       */
+/*   Updated: 2023/11/22 09:16:45 by ayakoubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,6 @@ int main()
 {
 	Base *p = generate();
 	identify(p);
-	//std::cout << p << std::endl;
+	identifyRef(*p);
 	return (0);
 }

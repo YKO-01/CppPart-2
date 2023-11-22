@@ -6,7 +6,7 @@
 /*   By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 18:25:28 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/11/21 12:09:18 by ayakoubi         ###   ########.fr       */
+/*   Updated: 2023/11/22 09:21:01 by ayakoubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,16 @@ Base::~Base()
 {
 }
 
+// __ Generate ________________________________________________________________
+// ============================================================================
 Base	*generate(void)
 {
-	Base *b = new C();
+	Base *b = new A();
 	return (b);
-}	
+}
 
+// __ Identify ________________________________________________________________
+// ============================================================================
 void	identify(Base* p)
 {
 	A *a = dynamic_cast<A*>(p);
@@ -39,4 +43,37 @@ void	identify(Base* p)
 		std::cout << "type of the object pointed by p : B" << std::endl;
 	else if (c != NULL)
 		std::cout << "type of the object pointed by p : C" << std::endl;
-}		
+}
+
+// __ Identify Ref ____________________________________________________________
+// ============================================================================
+void	identifyRef(Base& p)
+{
+	try
+	{
+		A &a = dynamic_cast<A&>(p);
+		(void) a;
+		std::cout << "type of the object pointed by p : A" << std::endl;
+	}
+	catch (...)
+	{
+	}
+	try
+	{
+		B &b = dynamic_cast<B&>(p);
+		(void) b;
+		std::cout << "type of the object pointed by p : B" << std::endl;
+	}
+	catch (...)
+	{
+	}
+	try
+	{
+		C &c = dynamic_cast<C&>(p);
+		(void) c;
+		std::cout << "type of the object pointed by p : C" << std::endl;
+	}
+	catch (...)
+	{
+	}
+}
