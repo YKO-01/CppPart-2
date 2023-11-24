@@ -6,7 +6,7 @@
 /*   By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 10:41:05 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/11/18 17:12:50 by ayakoubi         ###   ########.fr       */
+/*   Updated: 2023/11/24 10:09:18 by ayakoubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,11 @@ Intern&	Intern::operator = (const Intern& copy)
 
 // __ Make Form ________________________________________________________________
 // =============================================================================
-Form*   Intern::makeForm(std::string name, std::string target)
+AForm*   Intern::makeForm(std::string name, std::string target)
 {
     int i;
 	int ret;
-    Form *form[3]; 
+    AForm *form[3]; 
     form[0] = new ShrubberyCreationForm(target);
     form[1] = new RobotomyRequestForm(target);
     form[2] = new PresidentialPardonForm(target);

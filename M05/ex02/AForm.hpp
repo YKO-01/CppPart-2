@@ -6,17 +6,17 @@
 /*   By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 08:35:10 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/11/15 13:24:48 by ayakoubi         ###   ########.fr       */
+/*   Updated: 2023/11/24 09:47:38 by ayakoubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FORM_H
-#define FORM_H
+#ifndef AForm_H
+#define AForm_H
 
 class Bureaucrat;
 #include "Bureaucrat.hpp"
 
-class Form
+class AForm
 {
 	private:
 		const std::string name;
@@ -24,11 +24,11 @@ class Form
 		const int grade_sign;
 		const int grade_exec;
 	public:
-		Form();
-		Form(const Form& copy);
-		Form(std::string name, int gSign, int gExec);
-		virtual ~Form();
-		Form&	operator = (const Form& copy);
+		AForm();
+		AForm(const AForm& copy);
+		AForm(std::string name, int gSign, int gExec);
+		virtual ~AForm();
+		AForm&	operator = (const AForm& copy);
 		class GradeTooHighException : public std::exception
 		{
 			public :
@@ -47,6 +47,6 @@ class Form
 		virtual void	execute(Bureaucrat const &executer) const = 0;	
 };
 
-std::ostream& operator << (std::ostream& out, const Form& instance);
+std::ostream& operator << (std::ostream& out, const AForm& instance);
 
 #endif

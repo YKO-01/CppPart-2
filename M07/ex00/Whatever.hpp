@@ -1,33 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Intern.hpp                                         :+:      :+:    :+:   */
+/*   Whatever.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/15 10:40:21 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/11/24 10:03:17 by ayakoubi         ###   ########.fr       */
+/*   Created: 2023/11/23 11:53:57 by ayakoubi          #+#    #+#             */
+/*   Updated: 2023/11/23 12:29:44 by ayakoubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef INTERN_HPP
-#define INTERN_HPP
+#ifndef WHATEVER_HPP
+#define WHATEVER_HPP
 
-#include "AForm.hpp"
-#include "ShrubberyCreationForm.hpp"
-#include "RobotomyRequestForm.hpp"
-#include "PresidentialPardonForm.hpp"
-class AForm;
+#include <iostream>
 
-class Intern
+template <class T>
+
+class Whatever
 {
-	public :
-		Intern();
-		Intern(const Intern& copy);
-		~Intern();
-		Intern& operator = (const Intern& copy);
-		AForm*	makeForm(std::string name, std::string target);
-
+	public:
+		Whatever();
+		void swap(T first, T second);
+		T min(T first, T second);
+		T max(T first, T second);
 };
 
 #endif

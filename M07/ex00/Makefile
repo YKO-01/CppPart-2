@@ -5,44 +5,37 @@
 #                                                     +:+ +:+         +:+      #
 #    By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/10/18 08:29:44 by ayakoubi          #+#    #+#              #
-#    Updated: 2023/11/24 09:48:23 by ayakoubi         ###   ########.fr        #
+#    Created: 2023/11/23 12:17:09 by ayakoubi          #+#    #+#              #
+#    Updated: 2023/11/23 12:17:39 by ayakoubi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = main 
-
-
-###############	COMPILATION	#################
-
+# __ COMPILATION _______________________________________________________________
+# ==============================================================================
+NAME	=	main
 CPP	=	c++
-CPPFLAGS =	-Wall -Wextra -Werror -std=c++98
+CPPFLAGS=	-Wall -Wextra -Werror -std=c++98
 
-###########	SRC & OBJ	#################
-
-SRC	:=	main Bureaucrat AForm ShrubberyCreationForm RobotomyRequestForm PresidentialPardonForm
-
+SRC	:=	main Whatever
 OBJ	:=	$(addsuffix .o, $(SRC))
 SRC	:=	$(addsuffix .cpp, $(SRC))
 
-
-###########	RULES 		##############3
-
-
-%.o: %.cpp
+# __ RULES _____________________________________________________________________
+# ==============================================================================
+%.o : %.cpp
 	$(CPP) $(CPPFLAGS) -c $< -o $@
 
-all:	$(NAME)
+all: $(NAME)
 
-$(NAME) :	$(OBJ)
-	$(CPP) $(CPPFLAGS) $^ -o $(NAME)
+$(NAME) : $(OBJ)
+	$(CPP) $(CPPFLAGS) $^ -o $@
 
-clean:
-	rm -rf *.o
+clean :
+	@rm -rf $(OBJ)
 
-fclean:	clean
-	rm -rf $(NAME)
+fclean : clean
+	@rm -rf $(NAME)
 
-re:	fclean	all
+re : fclean all
 
-.PHONY: all clean fclean
+.PHONY : all clean fclean re

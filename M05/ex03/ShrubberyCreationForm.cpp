@@ -6,7 +6,7 @@
 /*   By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 09:53:19 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/11/18 17:15:30 by ayakoubi         ###   ########.fr       */
+/*   Updated: 2023/11/24 10:00:22 by ayakoubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ ShrubberyCreationForm::ShrubberyCreationForm() : sign(145), exec(137)
 {
 }
 
-ShrubberyCreationForm::ShrubberyCreationForm(std::string target) : Form(target, 145, 137), target(target), sign(145), exec(137)
+ShrubberyCreationForm::ShrubberyCreationForm(std::string target) : AForm(target, 145, 137), target(target), sign(145), exec(137)
 {
 }
 

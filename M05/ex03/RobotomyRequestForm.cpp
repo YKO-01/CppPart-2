@@ -6,7 +6,7 @@
 /*   By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 09:50:33 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/11/18 17:14:25 by ayakoubi         ###   ########.fr       */
+/*   Updated: 2023/11/24 10:01:43 by ayakoubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ RobotomyRequestForm::RobotomyRequestForm():target("default"), sign(72), exec(45)
 {
 }
 
-RobotomyRequestForm::RobotomyRequestForm(std::string target) : Form(target, 72, 45)
+RobotomyRequestForm::RobotomyRequestForm(std::string target) : AForm(target, 72, 45)
 {
 	this->target = target;
 	sign = 72;

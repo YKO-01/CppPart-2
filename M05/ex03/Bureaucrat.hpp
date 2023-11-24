@@ -6,7 +6,7 @@
 /*   By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 08:29:56 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/11/14 12:18:37 by ayakoubi         ###   ########.fr       */
+/*   Updated: 2023/11/24 09:58:03 by ayakoubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 
 #include <iostream>
-class Form;
+class AForm;
 #include "AForm.hpp"
 
 class Bureaucrat
@@ -44,8 +44,8 @@ class Bureaucrat
 			public:
 				virtual const char* what() const throw();
 		};
-		void	signForm(Form& form) const;
-		void	executeForm(Form const &form);
+		void	signForm(AForm& form) const;
+		void	executeForm(AForm const &form);
 		int		getCounter() const;
 };
 

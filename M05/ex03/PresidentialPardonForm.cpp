@@ -6,7 +6,7 @@
 /*   By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 09:52:31 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/11/18 17:13:34 by ayakoubi         ###   ########.fr       */
+/*   Updated: 2023/11/24 10:02:17 by ayakoubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ PresidentialPardonForm::PresidentialPardonForm() : sign(25), exec(5)
 {
 }
 
-PresidentialPardonForm::PresidentialPardonForm(std::string target) : Form(target, 25, 5)
+PresidentialPardonForm::PresidentialPardonForm(std::string target) : AForm(target, 25, 5)
 {
 	this->target = target;
 	sign = 25;

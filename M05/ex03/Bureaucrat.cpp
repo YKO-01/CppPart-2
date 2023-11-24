@@ -6,7 +6,7 @@
 /*   By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 08:30:09 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/11/18 17:11:19 by ayakoubi         ###   ########.fr       */
+/*   Updated: 2023/11/24 09:59:32 by ayakoubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ void	Bureaucrat::decrement()
 
 // __ Sign Form ________________________________________________________________
 // =============================================================================
-void	Bureaucrat::signForm(Form& form) const
+void	Bureaucrat::signForm(AForm& form) const
 {
 	try
 	{
@@ -126,7 +126,7 @@ void	Bureaucrat::signForm(Form& form) const
 
 // __ Execute Form _____________________________________________________________
 // =============================================================================
-void	Bureaucrat::executeForm(Form const &form)
+void	Bureaucrat::executeForm(AForm const &form)
 {
 	try
 	{

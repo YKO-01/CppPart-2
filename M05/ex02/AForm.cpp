@@ -6,7 +6,7 @@
 /*   By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 11:27:43 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/11/18 16:54:50 by ayakoubi         ###   ########.fr       */
+/*   Updated: 2023/11/24 09:47:38 by ayakoubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,33 +14,33 @@
 
 // __ Constructor & Destructor _________________________________________________
 // =============================================================================
-Form::Form(): name("none"), sign(false), grade_sign(0), grade_exec(0)
+AForm::AForm(): name("none"), sign(false), grade_sign(0), grade_exec(0)
 {
 }
 
-Form::Form(std::string name, int gSign, int gExec): name(name), grade_sign(gSign), grade_exec(gExec)
+AForm::AForm(std::string name, int gSign, int gExec): name(name), grade_sign(gSign), grade_exec(gExec)
 {
 	sign = false;
 }
 
-Form::Form(const Form& copy): name(copy.name), grade_sign(copy.grade_sign), grade_exec(copy.grade_exec)
+AForm::AForm(const AForm& copy): name(copy.name), grade_sign(copy.grade_sign), grade_exec(copy.grade_exec)
 {
 	*this = copy;
 }
 
-Form::~Form()
+AForm::~AForm()
 {
 }
 
 // __ Operators ________________________________________________________________
 // =============================================================================
-Form&	Form::operator=(const Form& copy)
+AForm&	AForm::operator=(const AForm& copy)
 {
 	this->sign = copy.sign;
 	return (*this);
 }
 
-std::ostream&	operator << (std::ostream& out, const Form& instance)
+std::ostream&	operator << (std::ostream& out, const AForm& instance)
 {
 	out << instance.getName() << std::endl;
 	out << instance.getSign() << std::endl;
@@ -51,44 +51,44 @@ std::ostream&	operator << (std::ostream& out, const Form& instance)
 
 // __ Throw Exception __________________________________________________________
 // =============================================================================
-const char*	Form::GradeTooHighException::what() const throw()
+const char*	AForm::GradeTooHighException::what() const throw()
 {
 	return ("Exception: in GradeToohighException");
 }
 
-const char* Form::GradeTooLowException::what() const throw()
+const char* AForm::GradeTooLowException::what() const throw()
 {
 	return ("Exception: in GradeTooLowException");
 }
 
 // __ Get (Name, sign, Gradesign, GradeExec) ___________________________________
 // =============================================================================
-std::string	Form::getName() const
+std::string	AForm::getName() const
 {
 	return (this->name);
 }
 
-bool Form::getSign() const
+bool AForm::getSign() const
 {
 	return (this->sign);
 }
 
-int Form::getGradeSign() const
+int AForm::getGradeSign() const
 {
 	return (this->grade_sign);
 }
 
-int Form::getGradeExec() const
+int AForm::getGradeExec() const
 {
 	return (this->grade_exec);
 }
 
-// __ Form Be signed ___________________________________________________________
+// __ AForm Be signed ___________________________________________________________
 // =============================================================================
-void	Form::beSigned(const Bureaucrat& bureaucrat)
+void	AForm::beSigned(const Bureaucrat& bureaucrat)
 {
 	if (this->grade_sign > bureaucrat.getGrade())
 		this->sign = true;
 	else 
-		throw Form::GradeTooHighException();
+		throw AForm::GradeTooHighException();
 }

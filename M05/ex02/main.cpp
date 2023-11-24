@@ -6,7 +6,7 @@
 /*   By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 08:30:22 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/11/15 13:25:47 by ayakoubi         ###   ########.fr       */
+/*   Updated: 2023/11/24 09:48:23 by ayakoubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ int main(void)
 	try
 	{
 		Bureaucrat b("contable", 35);
-		Form *f = new ShrubberyCreationForm("shrubbery");
-		b.executeForm(*f);
+		AForm *f = new ShrubberyCreationForm("shrubbery");
+		b.executeAForm(*f);
 		delete f;
 	}
 	catch (std::exception& e)
@@ -33,8 +33,8 @@ int main(void)
 	try
 	{
 		Bureaucrat b("contable", 35);
-		Form *f = new RobotomyRequestForm("robot");
-		b.executeForm(*f);
+		AForm *f = new RobotomyRequestForm("robot");
+		b.executeAForm(*f);
 		delete f;
 	}
 	catch (std::exception& e)
@@ -45,8 +45,8 @@ int main(void)
 	try
 	{
 		Bureaucrat b("contable", 35);
-		Form *f = new PresidentialPardonForm("president");
-		b.executeForm(*f);
+		AForm *f = new PresidentialPardonForm("president");
+		b.executeAForm(*f);
 		delete f;
 	}
 	catch (std::exception& e)
