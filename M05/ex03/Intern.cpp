@@ -6,7 +6,7 @@
 /*   By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 10:41:05 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/11/29 10:19:14 by ayakoubi         ###   ########.fr       */
+/*   Updated: 2023/11/29 15:56:46 by ayakoubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,27 +42,29 @@ AForm*   Intern::makeForm(std::string name, std::string target)
 {
     int i;
 	int ret;
-    AForm *form[3]; 
+    int j;
+    
+    AForm *f;
+    AForm *form[3];
     form[0] = new ShrubberyCreationForm(target);
     form[1] = new RobotomyRequestForm(target);
     form[2] = new PresidentialPardonForm(target);
     
     std::string array[3] = {"shrubbery creation", "robotomy request", "presidential pardon"};
     i = -1;
-	ret = 0;
-    while (++i < 3)
-    {
-        if (name == array[i])
-            ret = i;
-    }
+	ret = -1;
+    j = 0;
+    while (++i < 3 && name != array[i]);
+    ret = i;
     i = -1;
     while (++i < 3)
     {
         if (ret != i)
-		{
-			delete form[i];
-			form[i] = NULL;
-		}
+        {
+            delete form[j];
+            form[j] = NULL;  
+        }
     }
-    return (form[ret]);
+    f = ret > 0 ? form[ret] : NULL;
+    return (f);
 }
