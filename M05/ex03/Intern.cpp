@@ -6,7 +6,7 @@
 /*   By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/15 10:41:05 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/11/24 10:09:18 by ayakoubi         ###   ########.fr       */
+/*   Updated: 2023/11/29 10:19:14 by ayakoubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,11 @@ AForm*   Intern::makeForm(std::string name, std::string target)
     {
         if (name == array[i])
             ret = i;
-		else
+    }
+    i = -1;
+    while (++i < 3)
+    {
+        if (ret != i)
 		{
 			delete form[i];
 			form[i] = NULL;

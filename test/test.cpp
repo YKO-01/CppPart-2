@@ -24,7 +24,7 @@ typedef struct s_s {
 int main()
 {
 
-//	A a;
+//	A a; If expression is a pointer to a polymorphic type, and target-type is a pointer to void, the result is a pointer to the most derived object pointed or referenced by expression.
 //	a.f(5);
 
 	t_s s;

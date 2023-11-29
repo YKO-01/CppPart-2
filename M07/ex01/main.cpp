@@ -5,17 +5,20 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/21 11:13:06 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/11/26 09:44:31 by ayakoubi         ###   ########.fr       */
+/*   Created: 2023/11/25 10:58:51 by ayakoubi          #+#    #+#             */
+/*   Updated: 2023/11/25 12:37:13 by ayakoubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Base.hpp"
+#include "iter.hpp"
+
+
 
 int main()
 {
-	Base *p = generate();
-	identify(p);
-	identifyRef(*p);
+	int size = 10;
+	char arr[10] = {'A', 'B', '6', 2, 0, 4, 5, 9, 8, 7};
+
+	::iter(arr, size, ::function<char>);
 	return (0);
 }

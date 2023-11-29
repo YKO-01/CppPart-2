@@ -6,7 +6,7 @@
 /*   By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 10:06:33 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/11/18 10:06:34 by ayakoubi         ###   ########.fr       */
+/*   Updated: 2023/11/29 13:27:36 by ayakoubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,22 +32,27 @@ bool	checkConvert(std::string arg)
 	int i = -1;
 	int k = 0;
 	int len = (int)arg.length() - 1;
-	if (len >= 1)
+	int ret = 0;
+
+	if (len == 0)
+		return (true);
+	if (arg[0] == '-')
+		i++;
+	while (++i <= len)
 	{
-		if (arg[0] == '-')
-			i++;
-		while (++i <= len)
-		{
-			if (i == len && arg[i] == 'f')
-				return (true);
-			if (arg[i] != '.' && (arg[i] < '0' || arg[i] > '9'))
-				return (false);
-			if (arg[i] == '.')
-				k++;
-		}
-		if (k > 1)
+		if (arg[i] != ' ')
+			ret = 1;
+		if (i < len && ret == 1 && arg[i] == ' ' && arg[i + 1] != ' ')
 			return (false);
+		if (i == len && arg[i] == 'f')
+			return (true);
+		if (arg[i] != ' ' && arg[i] != '.' && !isdigit(arg[i]))
+			return (false);
+		if (arg[i] == '.')
+			k++;
 	}
+	if (k > 1)
+		return (false);
 	return (true);
 }
 
@@ -60,7 +65,7 @@ std::string getType(std::string arg)
 		return ("char");
 	if (arg[len] == 'f')
 		return ("float");
-	if (find(arg.begin(), arg.end(), '.') != arg.end())
+	if ((int)arg.find(".") != len)
 		return ("double");
 	return ("int");
 }
@@ -71,8 +76,8 @@ void	displayImpossible()
 {
 	std::cout << "char: impossible" << std::endl;
 	std::cout << "int: impossible" << std::endl;
-	std::cout << "float: nanf" << std::endl;
-	std::cout << "double: nan" << std::endl;
+	std::cout << "float: impossible" << std::endl;
+	std::cout << "double: impossible" << std::endl;
 }
 
 // __ Cast From Char ________________________________________________________________________________
@@ -92,10 +97,7 @@ void	fromInt(std::string arg)
 	std::istringstream varInt(arg);
 	int nbr;
 	if (!(varInt >> nbr))
-	{
-		std::cout << "char: impossible" << std::endl;
-		std::cout << "int: impossible" << std::endl;
-	}
+		displayImpossible();
 	else
 	{
 		if (nbr < 38 || nbr > 126)
@@ -103,9 +105,9 @@ void	fromInt(std::string arg)
 		else
 			std::cout << "char: '" << static_cast<char>(nbr) << "'" << std::endl;
 		std::cout << "int: " << nbr << std::endl;
+		std::cout << "float: " << std::fixed << std::setprecision(1) << static_cast<float>(nbr) << "f" << std::endl;
+		std::cout << "double: " << static_cast<double>(nbr) << std::endl;
 	}
-	std::cout << "float: " << std::fixed << std::setprecision(1) << static_cast<float>(nbr) << "f" << std::endl;
-	std::cout << "double: " << static_cast<double>(nbr) << std::endl;
 
 }
 // __ Cast From Float _______________________________________________________________________________
@@ -115,17 +117,21 @@ void	fromFloat(std::string arg)
 {
 	std::istringstream varFloat(arg);
 	float nbr;
-	varFloat >> nbr;
-	if (nbr < 38 || nbr > 126)
-		std::cout << "char: Non displayable" << std::endl;
+	if (!(varFloat >> nbr))
+		displayImpossible();
 	else
-		std::cout << "char: '" << static_cast<char>(nbr) << "'" << std::endl;
-	if (nbr < INT_MIN || nbr > INT_MAX)
-		std::cout << "int: impossible" << std::endl;
-	else
-		std::cout << "int: " << static_cast<int>(nbr) << std::endl;
-	std::cout << "float: " << std::fixed << std::setprecision(1) << nbr << "f" << std::endl;
-	std::cout << "double: " << static_cast<double>(nbr) << std::endl;
+	{
+		if (nbr < 38 || nbr > 126)
+			std::cout << "char: Non displayable" << std::endl;
+		else
+			std::cout << "char: '" << static_cast<char>(nbr) << "'" << std::endl;
+		if (nbr < INT_MIN || nbr > INT_MAX)
+			std::cout << "int: impossible" << std::endl;
+		else
+			std::cout << "int: " << static_cast<int>(nbr) << std::endl;
+		std::cout << "float: " << std::fixed << std::setprecision(1) << nbr << "f" << std::endl;
+		std::cout << "double: " << static_cast<double>(nbr) << std::endl;
+	}
 
 }
 // __ Cast From Double ______________________________________________________________________________
@@ -133,19 +139,23 @@ void	fromFloat(std::string arg)
 
 void	fromDouble(std::string arg)
 {
-	std::istringstream varFloat(arg);
+	std::istringstream varDouble(arg);
 	double nbr;
-	varFloat >> nbr;
-	if (nbr < 38 || nbr > 126)
-		std::cout << "char: Non displayable" << std::endl;
+	if (!(varDouble >> nbr))
+		displayImpossible();
 	else
-		std::cout << "char: '" << static_cast<char>(nbr) << "'" << std::endl;
-	if (nbr < INT_MIN || nbr > INT_MAX)
-		std::cout << "int: impossible" << std::endl;
-	else
-		std::cout << "int: " << static_cast<int>(nbr) << std::endl;
-	std::cout << "float: " << std::fixed << std::setprecision(1) << static_cast<float>(nbr) << "f" << std::endl;
-	std::cout << "double: " << nbr << std::endl;
+	{
+		if (nbr < 38 || nbr > 126)
+			std::cout << "char: Non displayable" << std::endl;
+		else
+			std::cout << "char: '" << static_cast<char>(nbr) << "'" << std::endl;
+		if (nbr < INT_MIN || nbr > INT_MAX)
+			std::cout << "int: impossible" << std::endl;
+		else
+			std::cout << "int: " << static_cast<int>(nbr) << std::endl;
+		std::cout << "float: " << std::fixed << std::setprecision(1) << static_cast<float>(nbr) << "f" << std::endl;
+		std::cout << "double: " << nbr << std::endl;
+	}
 
 }
 // __ ScalarConverter Convert _______________________________________________________________________
