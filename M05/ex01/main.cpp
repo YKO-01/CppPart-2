@@ -17,7 +17,7 @@ int main(void)
 
 	try
 	{
-		Bureaucrat b("hello", 18);
+		Bureaucrat b("bureau", 18);
 		Form	f("form", 16, 3);
 		std::cout << f << std::endl;
 		std::cout << b << std::endl;
