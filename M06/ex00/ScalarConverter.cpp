@@ -6,7 +6,7 @@
 /*   By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 10:06:33 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/11/29 13:27:36 by ayakoubi         ###   ########.fr       */
+/*   Updated: 2023/12/02 12:14:33 by ayakoubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ bool	checkConvert(std::string arg)
 {
 	int i = -1;
 	int k = 0;
-	int len = (int)arg.length() - 1;
+	int len = static_cast<int>(arg.length() - 1);
 	int ret = 0;
 
 	if (len == 0)
@@ -45,7 +45,7 @@ bool	checkConvert(std::string arg)
 			ret = 1;
 		if (i < len && ret == 1 && arg[i] == ' ' && arg[i + 1] != ' ')
 			return (false);
-		if (i == len && arg[i] == 'f')
+		if (arg[len] == 'f' && arg[len - 1] != '.')
 			return (true);
 		if (arg[i] != ' ' && arg[i] != '.' && !isdigit(arg[i]))
 			return (false);
@@ -61,12 +61,16 @@ bool	checkConvert(std::string arg)
 // =============================================================================
 std::string getType(std::string arg)
 {
-	int len = (int)arg.length() - 1;
+	size_t len = arg.length() - 1;
+
+	if (arg == "-inf" || arg == "+inf" || arg == "nan")
+		return ("pseudo");
 	if (len == 0 && (arg[0] < '0' || arg[0] > '9'))
 		return ("char");
 	if (arg[len] == 'f')
 		return ("float");
-	if (arg.find(0, len, '.') < len)
+	std::cout << arg.find('.') << std::endl;
+	if (arg.find(".") < len)
 		return ("double");
 	return ("int");
 }
@@ -111,9 +115,9 @@ void	fromInt(std::string arg)
 	}
 
 }
+
 // __ Cast From Float __________________________________________________________
-// =============================================================================
-		
+// =============================================================================		
 void	fromFloat(std::string arg)
 {
 	std::istringstream varFloat(arg);
@@ -135,9 +139,9 @@ void	fromFloat(std::string arg)
 	}
 
 }
+
 // __ Cast From Double _________________________________________________________
 // =============================================================================
-
 void	fromDouble(std::string arg)
 {
 	std::istringstream varDouble(arg);
@@ -159,9 +163,9 @@ void	fromDouble(std::string arg)
 	}
 
 }
+
 // __ ScalarConverter Convert __________________________________________________
 // =============================================================================
-
 void ScalarConverter::convert(std::string argument)
 {
 	std::string type;
@@ -182,5 +186,7 @@ void ScalarConverter::convert(std::string argument)
 		}
 		if (type == "double")
 			fromDouble(argument);
+		if (type == "pseudo")
+			frompseudo(argument);
 	}	
 }
