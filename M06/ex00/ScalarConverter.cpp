@@ -6,7 +6,7 @@
 /*   By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 10:06:33 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/12/03 09:52:05 by ayakoubi         ###   ########.fr       */
+/*   Updated: 2023/12/03 10:37:09 by ayakoubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,22 @@ ScalarConverter::~ScalarConverter()
 {
 }
 
+ScalarConverter::ScalarConverter(const ScalarConverter& copy)
+{
+	*this = copy;
+}
+
+// __ Assignement Operator _____________________________________________________
+// =============================================================================
+ScalarConverter& ScalarConverter::operator=(const ScalarConverter& copy)
+{
+	(void) copy;
+	return (*this);
+}
+
 // __ Check Conver _____________________________________________________________
 // =============================================================================
-bool	checkConvert(std::string arg)
+bool	ScalarConverter::checkConvert(std::string arg)
 {
 	int i = -1;
 	int k = 0;
@@ -59,28 +72,28 @@ bool	checkConvert(std::string arg)
 
 // __ Get Type  ________________________________________________________________
 // =============================================================================
-std::string getType(std::string arg)
+e_type ScalarConverter::getType(std::string arg)
 {
 	size_t len = arg.length() - 1;
 
 	if (arg == "-inf" || arg == "+inf" || arg == "nan")
-		return ("pseudoDouble");
+		return (PSEUDODOUBLE);
 	if (arg == "-inff" || arg == "+inff" || arg == "nanf")
-		return ("pseudoFlaot");
+		return (PSEUDOFLOAT);
 	if (checkConvert(arg) == false)
-		return ("string");
+		return (STRING);
 	if (len == 0 && (arg[0] < '0' || arg[0] > '9'))
-		return ("char");
+		return (CHAR);
 	if (arg[len] == 'f')
-		return ("float");
+		return (FLOAT);
 	if (arg.find(".") < len)
-		return ("double");
-	return ("int");
+		return (DOUBLE);
+	return (INT);
 }
 
 // __ Display Impossible _______________________________________________________
 // =============================================================================
-void	displayImpossible()
+void	ScalarConverter::displayImpossible()
 {
 	std::cout << "char: impossible" << std::endl;
 	std::cout << "int: impossible" << std::endl;
@@ -90,7 +103,7 @@ void	displayImpossible()
 
 // __ Cast From Char ___________________________________________________________
 // =============================================================================
-void	fromChar(char c)
+void	ScalarConverter::fromChar(char c)
 {
 	std::cout << "char: '" << c << "'" << std::endl;
 	std::cout << "int: " << static_cast<int>(c) << std::endl;
@@ -100,7 +113,7 @@ void	fromChar(char c)
 
 // __ Cast From Int ____________________________________________________________
 // =============================================================================
-void	fromInt(std::string arg)
+void	ScalarConverter::fromInt(std::string arg)
 {
 	std::istringstream varInt(arg);
 	int nbr;
@@ -123,7 +136,7 @@ void	fromInt(std::string arg)
 
 // __ Cast From Float __________________________________________________________
 // =============================================================================		
-void	fromFloat(std::string arg)
+void	ScalarConverter::fromFloat(std::string arg)
 {
 	std::istringstream varFloat(arg);
 	float nbr;
@@ -149,7 +162,7 @@ void	fromFloat(std::string arg)
 
 // __ Cast From Double _________________________________________________________
 // =============================================================================
-void	fromDouble(std::string arg)
+void	ScalarConverter::fromDouble(std::string arg)
 {
 	std::istringstream varDouble(arg);
 	double nbr;
@@ -175,7 +188,7 @@ void	fromDouble(std::string arg)
 
 // __ Cast From Pseudo ______ __________________________________________________
 // =============================================================================
-void	fromPseudoFloat(std::string arg)
+void	ScalarConverter::fromPseudoFloat(std::string arg)
 {
 	std::istringstream varFloat(arg);
 	float nbr;
@@ -188,7 +201,7 @@ void	fromPseudoFloat(std::string arg)
 
 // __ Cast From Pseudo ______ __________________________________________________
 // =============================================================================
-void	fromPseudoDouble(std::string arg)
+void	ScalarConverter::fromPseudoDouble(std::string arg)
 {
 	std::istringstream varDouble(arg);
 	double nbr;
@@ -203,23 +216,24 @@ void	fromPseudoDouble(std::string arg)
 // =============================================================================
 void ScalarConverter::convert(std::string argument)
 {
-	std::string type;
+	e_type type;
+
 	type = getType(argument);
-	if (type == "string")
+	if (type == STRING)
 		displayImpossible();
-	if (type == "char")
+	if (type == CHAR)
 		fromChar(argument[0]);
-	if (type == "int")
+	if (type == INT)
 		fromInt(argument);
-	if (type == "float")
+	if (type == FLOAT)
 	{
 		argument.erase(argument.length() - 1);
 		fromFloat(argument);
 	}
-	if (type == "double")
+	if (type == DOUBLE)
 		fromDouble(argument);
-	if (type == "pseudoFlaot")
+	if (type == PSEUDOFLOAT)
 		fromPseudoFloat(argument);
-	if (type == "pseudoDouble")
+	if (type == PSEUDODOUBLE)
 		fromPseudoFloat(argument);
 }
