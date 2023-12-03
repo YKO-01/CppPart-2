@@ -6,7 +6,7 @@
 /*   By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 10:06:33 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/12/02 12:14:33 by ayakoubi         ###   ########.fr       */
+/*   Updated: 2023/12/03 09:52:05 by ayakoubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,12 +64,15 @@ std::string getType(std::string arg)
 	size_t len = arg.length() - 1;
 
 	if (arg == "-inf" || arg == "+inf" || arg == "nan")
-		return ("pseudo");
+		return ("pseudoDouble");
+	if (arg == "-inff" || arg == "+inff" || arg == "nanf")
+		return ("pseudoFlaot");
+	if (checkConvert(arg) == false)
+		return ("string");
 	if (len == 0 && (arg[0] < '0' || arg[0] > '9'))
 		return ("char");
 	if (arg[len] == 'f')
 		return ("float");
-	std::cout << arg.find('.') << std::endl;
 	if (arg.find(".") < len)
 		return ("double");
 	return ("int");
@@ -105,7 +108,9 @@ void	fromInt(std::string arg)
 		displayImpossible();
 	else
 	{
-		if (nbr < 38 || nbr > 126)
+		if (nbr > 256)
+			std::cout << "char: impossible" << std::endl;
+		else if (nbr < 38 || nbr > 126)
 			std::cout << "char: Non displayable" << std::endl;
 		else
 			std::cout << "char: '" << static_cast<char>(nbr) << "'" << std::endl;
@@ -126,7 +131,9 @@ void	fromFloat(std::string arg)
 		displayImpossible();
 	else
 	{
-		if (nbr < 38 || nbr > 126)
+		if (nbr > 256)
+			std::cout << "char: impossible" << std::endl;
+		else if (nbr < 38 || nbr > 126)
 			std::cout << "char: Non displayable" << std::endl;
 		else
 			std::cout << "char: '" << static_cast<char>(nbr) << "'" << std::endl;
@@ -150,7 +157,9 @@ void	fromDouble(std::string arg)
 		displayImpossible();
 	else
 	{
-		if (nbr < 38 || nbr > 126)
+		if (nbr > 256)
+			std::cout << "char: impossible" << std::endl;
+		else if (nbr < 38 || nbr > 126)
 			std::cout << "char: Non displayable" << std::endl;
 		else
 			std::cout << "char: '" << static_cast<char>(nbr) << "'" << std::endl;
@@ -164,29 +173,53 @@ void	fromDouble(std::string arg)
 
 }
 
+// __ Cast From Pseudo ______ __________________________________________________
+// =============================================================================
+void	fromPseudoFloat(std::string arg)
+{
+	std::istringstream varFloat(arg);
+	float nbr;
+	varFloat >> nbr;
+	std::cout << "char: impossible" << std::endl;
+	std::cout << "int: impossible" << std::endl;
+	std::cout << "float: " << std::fixed << std::setprecision(1) << nbr << "f" << std::endl;
+	std::cout << "double: " << static_cast<double>(nbr)  << std::endl;
+}
+
+// __ Cast From Pseudo ______ __________________________________________________
+// =============================================================================
+void	fromPseudoDouble(std::string arg)
+{
+	std::istringstream varDouble(arg);
+	double nbr;
+	varDouble >> nbr;
+	std::cout << "char: impossible" << std::endl;
+	std::cout << "int: impossible" << std::endl;
+	std::cout << "float: " << std::fixed << std::setprecision(1) << static_cast<float>(nbr) << "f" << std::endl;
+	std::cout << "double: " << nbr << std::endl;
+}
+
 // __ ScalarConverter Convert __________________________________________________
 // =============================================================================
 void ScalarConverter::convert(std::string argument)
 {
 	std::string type;
-	if (checkConvert(argument) == false)
+	type = getType(argument);
+	if (type == "string")
 		displayImpossible();
-	else
+	if (type == "char")
+		fromChar(argument[0]);
+	if (type == "int")
+		fromInt(argument);
+	if (type == "float")
 	{
-		type = getType(argument);
-		std::cout << type << std::endl;
-		if (type == "char")
-			fromChar(argument[0]);
-		if (type == "int")
-			fromInt(argument);
-		if (type == "float")
-		{
-			argument.erase(argument.length() - 1);
-			fromFloat(argument);
-		}
-		if (type == "double")
-			fromDouble(argument);
-		if (type == "pseudo")
-			frompseudo(argument);
-	}	
+		argument.erase(argument.length() - 1);
+		fromFloat(argument);
+	}
+	if (type == "double")
+		fromDouble(argument);
+	if (type == "pseudoFlaot")
+		fromPseudoFloat(argument);
+	if (type == "pseudoDouble")
+		fromPseudoFloat(argument);
 }
