@@ -6,7 +6,7 @@
 /*   By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 18:20:39 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/11/22 09:08:20 by ayakoubi         ###   ########.fr       */
+/*   Updated: 2023/12/03 11:41:25 by ayakoubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,5 @@ class Base
 		Base();
 		virtual ~Base();
 };
-
-Base *generate(void);
-void identify(Base* p);
-void identifyRef(Base& p);
 
 #endif

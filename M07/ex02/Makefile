@@ -6,7 +6,7 @@
 #    By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/02 12:16:11 by ayakoubi          #+#    #+#              #
-#    Updated: 2023/12/02 12:44:59 by ayakoubi         ###   ########.fr        #
+#    Updated: 2023/12/04 11:34:20 by ayakoubi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@
 # ==============================================================================
 NAME	=	main
 CPP	=	c++
-CPPFLAGS=	-Wall -Wextra -Werror -std=c++98
+CPPFLAGS=	-Wall -Wextra -Werror -std=c++98 -g -fsanitize=address
 
 SRC	:=	main
 OBJ	:=	$(addsuffix .o, $(SRC))
