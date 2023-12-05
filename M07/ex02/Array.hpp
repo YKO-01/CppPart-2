@@ -6,7 +6,7 @@
 /*   By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/03 11:53:21 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/12/04 11:59:15 by ayakoubi         ###   ########.fr       */
+/*   Updated: 2023/12/05 10:35:58 by ayakoubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,47 +22,21 @@ class Array
 		T *arr;
 		int n;
 	public :
-		Array() {
-			n = 0;
-			arr = NULL;
-		}
-		Array(unsigned int n){
-			this->n = n;
-			arr = new T[n];
-		}
-		Array(const Array& copy){
-			*this = copy;
-		}
-		~Array(){
-			delete [] arr;
-		}
-		Array& operator = (const Array& copy){
-			int	i;
-			i = -1;
-			this->n = copy.size();	
-			this->arr = new T[n];
-			while (++i < n)
-				this->arr[i] = copy.arr[i];
-			return (*this);
-		}
-		T& operator [] (int index){
-			if (index >= n || index < 0)
-				throw throwException();
-			return (arr[index]);
-		}
+		Array();
+		Array(unsigned int n);
+		Array(const Array& copy);
+		Array& operator = (const Array& copy);
+		T& operator [] (int index);
 
 		class throwException : public std::exception{
 			public :
-				virtual const char* what() const throw(){
-					return ("its index out of bound");
-				}
+				virtual const char* what() const throw();
 		};
 		
-		int	size() const{
-			return (n);
-		}
+		int	size() const;
 };
 
+#include "Array.tpp"
 
 
 #endif

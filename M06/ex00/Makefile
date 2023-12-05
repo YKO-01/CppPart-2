@@ -6,36 +6,50 @@
 #    By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/18 09:52:52 by ayakoubi          #+#    #+#              #
-#    Updated: 2023/11/18 11:40:20 by ayakoubi         ###   ########.fr        #
+#    Updated: 2023/12/05 09:12:56 by ayakoubi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-# __ COMPILATION _______________________________________________________________
+# __ VAR & COMPILATION _________________________________________________________
 # ==============================================================================
-NAME	=	main
+NAME = main 
 CPP	=	c++
-CPPFLAGS=	-Wall -Wextra -Werror -std=c++98
+CPPFLAGS =	-Wall -Wextra -Werror -std=c++98
 
 SRC	:=	main ScalarConverter
+
 OBJ	:=	$(addsuffix .o, $(SRC))
 SRC	:=	$(addsuffix .cpp, $(SRC))
 
+# __ COLOR _____________________________________________________________________
+# ==============================================================================
+RED = \033[1;31m
+GREEN = \033[1;32m
+SPLASH = \033[5m
+BLUE = \033[1;34m
+YELLOW = \033[1;33m
+RESET = \033[0m
+
 # __ RULES _____________________________________________________________________
 # ==============================================================================
-%.o : %.cpp
-	$(CPP) $(CPPFLAGS) -c $< -o $@
+%.o: %.cpp
+	@$(CPP) $(CPPFLAGS) -c $< -o $@
+	@echo "$(YELLOW) compile >>>> $< $(RESET)"
 
-all: $(NAME)
+all:	$(NAME)
 
-$(NAME) : $(OBJ)
-	$(CPP) $(CPPFLAGS) $^ -o $@
+$(NAME) :	$(OBJ)
+	@$(CPP) $(CPPFLAGS) $^ -o $(NAME)
+	@@echo "$(GREEN) ------ Built success ------ $(RESET)"
 
-clean :
-	@rm -rf $(OBJ)
+clean:
+	@echo "$(RED) REMOVED OBJ $(RESET)"
+	@rm -rf *.o
 
-fclean : clean
+fclean:	clean
+	@echo "$(RED) REMOVED $(NAME) $(RESET)"
 	@rm -rf $(NAME)
 
-re : fclean all
+re:	fclean	all
 
-.PHONY : all clean fclean re
+.PHONY: all clean fclean

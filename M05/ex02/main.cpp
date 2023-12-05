@@ -6,7 +6,7 @@
 /*   By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 08:30:22 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/11/24 09:48:23 by ayakoubi         ###   ########.fr       */
+/*   Updated: 2023/12/04 19:44:29 by ayakoubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,41 +17,44 @@
 
 int main(void)
 {
-
+	AForm *f = NULL;
 	try
 	{
 		Bureaucrat b("contable", 35);
-		AForm *f = new ShrubberyCreationForm("shrubbery");
+		f = new ShrubberyCreationForm("shrubbery");
 		b.executeAForm(*f);
 		delete f;
 	}
 	catch (std::exception& e)
 	{
 		std::cout << "Exception : " << e.what() << std::endl;
+		delete f;
 	}
 	std::cout << "===============================" << std::endl;
 	try
 	{
 		Bureaucrat b("contable", 35);
-		AForm *f = new RobotomyRequestForm("robot");
+		f = new RobotomyRequestForm("robot");
 		b.executeAForm(*f);
 		delete f;
 	}
 	catch (std::exception& e)
 	{
 		std::cout << "Exception : " << e.what() << std::endl;
+		delete f;
 	}
 	std::cout << "===============================" << std::endl;
 	try
 	{
 		Bureaucrat b("contable", 35);
-		AForm *f = new PresidentialPardonForm("president");
+		f = new PresidentialPardonForm("president");
 		b.executeAForm(*f);
 		delete f;
 	}
 	catch (std::exception& e)
 	{
 		std::cout << "Exception : " << e.what() << std::endl;
+		delete f;
 	}
 	return (0);
 }
