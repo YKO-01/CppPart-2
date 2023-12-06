@@ -6,7 +6,7 @@
 /*   By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 11:27:43 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/11/24 09:47:38 by ayakoubi         ###   ########.fr       */
+/*   Updated: 2023/12/05 12:42:52 by ayakoubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ int AForm::getGradeExec() const
 // =============================================================================
 void	AForm::beSigned(const Bureaucrat& bureaucrat)
 {
-	if (this->grade_sign > bureaucrat.getGrade())
+	if (this->grade_sign >= bureaucrat.getGrade())
 		this->sign = true;
 	else 
 		throw AForm::GradeTooHighException();
