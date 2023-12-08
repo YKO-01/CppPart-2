@@ -1,24 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   easyfind.hpp                                       :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/06 11:14:32 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/12/08 19:09:56 by ayakoubi         ###   ########.fr       */
+/*   Created: 2023/12/07 20:51:25 by ayakoubi          #+#    #+#             */
+/*   Updated: 2023/12/08 19:42:25 by ayakoubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef EASYFIND_HPP
-#define EASYFIND_HPP
+#include "Span.hpp"
 
-#include <iostream>
-#include <vector>
+int main()
+{
+	Span sp = Span(5);
+	sp.addNumber(6);
+	sp.addNumber(3);
+	sp.addNumber(17);
+	sp.addNumber(9);
+	sp.addNumber(11);
 
-template <typename T>
-T	easyfind(std::vector<T>first, int second);
+	Span tmp = sp;
 
-#include "easyfind.tpp"
 
-#endif
+	std::cout << sp.longestSpan() << std::endl;
+	sp.printVector();
+	std::cout << "========================" << std::endl;
+	tmp.printVector();
+	return (0);
+}

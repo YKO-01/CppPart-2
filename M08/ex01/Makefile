@@ -5,8 +5,8 @@
 #                                                     +:+ +:+         +:+      #
 #    By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/12/06 11:09:49 by ayakoubi          #+#    #+#              #
-#    Updated: 2023/12/07 20:49:32 by ayakoubi         ###   ########.fr        #
+#    Created: 2023/12/06 13:14:41 by ayakoubi          #+#    #+#              #
+#    Updated: 2023/12/08 19:03:13 by ayakoubi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ NAME = main
 CPP	=	c++
 CPPFLAGS =	-Wall -Wextra -Werror -std=c++98
 
-SRC	:=	main
+SRC	:=	main Span
 
 OBJ	:=	$(addsuffix .o, $(SRC))
 SRC	:=	$(addsuffix .cpp, $(SRC))

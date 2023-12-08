@@ -6,7 +6,7 @@
 /*   By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 11:28:30 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/12/06 13:12:02 by ayakoubi         ###   ########.fr       */
+/*   Updated: 2023/12/07 18:37:47 by ayakoubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int main(void)
 	nums.push_back(22);
 	try
 	{
-		int find = easyfind(nums, 50);
+		int find = easyfind(nums, 23);
 		std::cout << find << std::endl;
 	}
 	catch(const char* str)
