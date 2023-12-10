@@ -6,7 +6,7 @@
 /*   By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 20:53:50 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/12/10 09:45:28 by ayakoubi         ###   ########.fr       */
+/*   Updated: 2023/12/10 11:52:32 by ayakoubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ class Span
 		void	addNumber(int nbr);
 		int		shortestSpan();
 		int		longestSpan();
-		void	printVector();	
 };
 		
 

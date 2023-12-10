@@ -6,7 +6,7 @@
 /*   By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 12:37:43 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/12/10 10:58:15 by ayakoubi         ###   ########.fr       */
+/*   Updated: 2023/12/10 11:52:37 by ayakoubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,44 +81,52 @@ void	Span::addNumber(int nbr)
 // =============================================================================
 int	Span::shortestSpan()
 {
-	std::vector<int> tmp;
-	tmp = numbers;
-	std::vector<int>::iterator first = tmp.begin();
-	std::vector<int>::iterator last = tmp.end();
-	std::sort(first, last);
-	unsigned int i;
-	int shortest = *(last - 1) - *first;
-	i = -1;
-	while (++i < tmp.size() - 1)
+	try
 	{
-		if (*(first + 1) - *first < shortest)
-			shortest = *(first + 1) - *first;
-		first++;
+		if (numbers.size() <= 1)
+			throw "There are not enough numbers to do this";
+		std::vector<int> tmp;
+		tmp = numbers;
+		std::vector<int>::iterator first = tmp.begin();
+		std::vector<int>::iterator last = tmp.end();
+		std::sort(first, last);
+		unsigned int i;
+		int shortest = *(last - 1) - *first;
+		i = -1;
+		while (++i < tmp.size() - 1)
+		{
+			if (*(first + 1) - *first < shortest)
+				shortest = *(first + 1) - *first;
+			first++;
+		}
+		return (shortest);
 	}
-	return (shortest);
+	catch (const char* str)
+	{
+		std::cout << str << std::endl;
+	}
+	return (false);
 }
 
 // __ Longest Span ____________________________________________________________
 // =============================================================================
 int	Span::longestSpan()
 {
-	std::vector<int> tmp;
-	tmp = numbers;
-	std::vector<int>::iterator first = tmp.begin();
-	std::vector<int>::iterator last = tmp.end();
-	std::sort(first, last);
-	int longest = *(last - 1) - *first;
-	return (tmp.clear(), longest);
-}
-
-void	Span::printVector()
-{
-	unsigned int i;
-	
-	i = -1;
-	while (++i < numbers.size())
+	try
 	{
-		std::cout << numbers[i] << std::endl;
+		if (numbers.size() <= 1)
+			throw "There are not enough numbers to do this";
+		std::vector<int> tmp;
+		tmp = numbers;
+		std::vector<int>::iterator first = tmp.begin();
+		std::vector<int>::iterator last = tmp.end();
+		std::sort(first, last);
+		int longest = *(last - 1) - *first;
+		return (tmp.clear(), longest);
 	}
-};
-
+	catch (const char* str)
+	{
+		std::cout << str << std::endl;
+	}
+	return (false);
+}
