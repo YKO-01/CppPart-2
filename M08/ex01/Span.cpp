@@ -6,7 +6,7 @@
 /*   By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 12:37:43 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/12/08 21:24:35 by ayakoubi         ###   ########.fr       */
+/*   Updated: 2023/12/10 10:58:15 by ayakoubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,12 @@ Span::Span(unsigned int n) : N(n)
 
 Span::Span(const Span& copy)
 {
+	this->N = copy.N;
 	*this = copy;
 }
 
 Span::~Span()
-{
+{ 
 	this->numbers.clear();
 }
 
@@ -36,65 +37,86 @@ Span::~Span()
 // =============================================================================
 Span&	Span::operator = (const Span& copy)
 {
-	this->N = copy.N;
-	int	i;
-	i = -1;
-	this->numbers.clear();
-	while (++i < (int)copy.numbers.size())
-		this->numbers.push_back(copy.numbers[i]);
+	try
+	{
+		unsigned int	i;
+		i = -1;
+		this->numbers.clear();
+		while (++i < copy.numbers.size())
+		{
+			if (this->N < i)
+				throw "its index is out of bounds";
+			this->numbers.push_back(copy.numbers[i]);
+		}
+	}
+	catch (const char* str)
+	{
+		std::cout << str << std::endl;
+	}
 	return (*this);
-}
-
-// __ Throw Exception __________________________________________________________
-// =============================================================================
-const char* Span::throwException::what() const throw()
-{
-	return ("its index is out of bounds");
 }
 
 // __ Add Number To Span _______________________________________________________
 // =============================================================================
 void	Span::addNumber(int nbr)
 {
-	if (numbers.size() < N)
-		numbers.push_back(nbr);
-	else
-		throw throwException();
+	try
+	{
+		std::vector<int>::iterator itr;
+		itr = std::find(numbers.begin(), numbers.end(), nbr);
+		if (itr != numbers.end())
+			throw "this number exists";
+		if (numbers.size() < N)
+			numbers.push_back(nbr);
+		else
+			throw "its index is out of bounds";
+	}
+	catch (const char* str)
+	{
+		std::cout << str << " you can't add this number " << nbr << std::endl;
+	}
 }
 
 // __ Shortest Span ____________________________________________________________
 // =============================================================================
-int	Span::longestSpan()
+int	Span::shortestSpan()
 {
-	std::vector<int>::iterator first = numbers.begin();
-	std::vector<int>::iterator last = numbers.end();
-
-	int i;
-	int max;
-	int min;
-	max = *first;
-	min = *first;
-	
+	std::vector<int> tmp;
+	tmp = numbers;
+	std::vector<int>::iterator first = tmp.begin();
+	std::vector<int>::iterator last = tmp.end();
+	std::sort(first, last);
+	unsigned int i;
+	int shortest = *(last - 1) - *first;
 	i = -1;
-	while (*first != *(last - 1))
+	while (++i < tmp.size() - 1)
 	{
-		if (*first > *(first + 1) && max < *first)
-			max = *first;
-		if (*first < *(first + 1) && min > *first)
-			min = *first;
+		if (*(first + 1) - *first < shortest)
+			shortest = *(first + 1) - *first;
 		first++;
 	}
-	std::cout << max << " " << min << std::endl;
-	return (max - min);
+	return (shortest);
 }
 
+// __ Longest Span ____________________________________________________________
+// =============================================================================
+int	Span::longestSpan()
+{
+	std::vector<int> tmp;
+	tmp = numbers;
+	std::vector<int>::iterator first = tmp.begin();
+	std::vector<int>::iterator last = tmp.end();
+	std::sort(first, last);
+	int longest = *(last - 1) - *first;
+	return (tmp.clear(), longest);
+}
 
 void	Span::printVector()
 {
-	int i;
+	unsigned int i;
 	
-	 i = -1;
-	while (++i < (int)numbers.size())
+	i = -1;
+	while (++i < numbers.size())
 	{
 		std::cout << numbers[i] << std::endl;
 	}

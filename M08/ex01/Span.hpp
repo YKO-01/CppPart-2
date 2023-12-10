@@ -6,7 +6,7 @@
 /*   By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 20:53:50 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/12/08 19:36:24 by ayakoubi         ###   ########.fr       */
+/*   Updated: 2023/12/10 09:45:28 by ayakoubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,8 @@ class Span
 		Span&	operator = (const Span& copy);
 
 		void	addNumber(int nbr);
-		class throwException : public std::exception
-		{
-			public:
-				virtual const char* what() const throw();
-		};
-		int	longestSpan();
+		int		shortestSpan();
+		int		longestSpan();
 		void	printVector();	
 };
 		
