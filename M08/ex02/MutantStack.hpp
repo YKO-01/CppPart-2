@@ -1,43 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Array.hpp                                          :+:      :+:    :+:   */
+/*   MutantStack.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/03 11:53:21 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/12/10 21:54:56 by ayakoubi         ###   ########.fr       */
+/*   Created: 2023/12/10 12:46:08 by ayakoubi          #+#    #+#             */
+/*   Updated: 2023/12/11 17:01:43 by ayakoubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ARRAY_HPP
-#define ARRAY_HPP
+#ifndef MUTANTSTACK_HPP
+#define MUTANTSTACK_HPP
 
 #include <iostream>
+#include <stack>
 
-template <class T>
-class Array
+template <typename T>
+class MutantStack : public std::stack<T>
 {
-	private:
-		T *arr;
-		int n;
 	public :
-		Array();
-		Array(unsigned int n);
-		Array(const Array& copy);
-		~Array();
-		Array& operator = (const Array& copy);
-		T& operator [] (int index);
-
-		class throwException : public std::exception{
-			public :
-				virtual const char* what() const throw();
-		};
-		
-		int	size() const;
+		MutantStack();
+		MutantStack(const MutantStack& copy);
+		~MutantStack();
+		MutantStack& operator = (const MutantStack& copy);
+		typedef typename std::stack<T>::container_type::iterator		iterator;
+		iterator begin();
+		iterator end();
 };
 
-#include "Array.tpp"
+#include "MutantStack.tpp"	
 
 
 #endif

@@ -5,20 +5,35 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/25 10:58:51 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/12/10 21:21:42 by ayakoubi         ###   ########.fr       */
+/*   Created: 2023/12/11 15:23:02 by ayakoubi          #+#    #+#             */
+/*   Updated: 2023/12/11 15:59:23 by ayakoubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "iter.hpp"
+#include "MutantStack.hpp"
 
-
-
-int main()
+int main(void)
 {
-	int size = 10;
-	const char arr[10] = {'A', 'B', '6', 2, 0, 4, 5, 9, 8, 7};
-
-	::iter(arr, size, ::function<const char>);
+	MutantStack<int> mstack;
+	mstack.push(5);
+	mstack.push(17);
+	std::cout << mstack.top() << std::endl;
+	mstack.pop();
+	std::cout << mstack.size() << std::endl;
+	mstack.push(3);
+	mstack.push(5);
+	mstack.push(737);
+	//[...]
+	mstack.push(0);
+	MutantStack<int>::iterator it = mstack.begin();
+	MutantStack<int>::iterator ite = mstack.end();
+	++it;
+	--it;
+	while (it != ite)
+	{
+		std::cout << *it << std::endl;
+		++it;
+	}
+	std::stack<int> s(mstack);
 	return (0);
 }

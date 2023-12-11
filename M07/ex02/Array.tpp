@@ -13,10 +13,15 @@ Array<T>::Array()
 template <class T>
 Array<T>::Array(unsigned int n)
 {
-	this->n = n;
-	arr = new T[n];
-	if (!arr)
-		exit(EXIT_FAILURE);
+	try
+	{
+		this->n = n;
+		arr = new T[n];
+	}
+	catch(std::bad_alloc& e)
+	{
+		std::cout << e.what() << std::endl;
+	}
 }
 
 template <class T>
@@ -33,6 +38,12 @@ Array<T>::Array(const Array& copy)
 	i = -1;
 	while (++i < n)
 		this->arr[i] = copy.arr[i];
+}
+
+template <class T>
+Array<T>::~Array()
+{
+	delete arr;
 }
 
 template <class T>
