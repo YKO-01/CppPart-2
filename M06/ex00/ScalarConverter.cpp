@@ -6,7 +6,7 @@
 /*   By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 10:06:33 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/12/03 10:37:09 by ayakoubi         ###   ########.fr       */
+/*   Updated: 2023/12/12 10:46:08 by ayakoubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -233,7 +233,10 @@ void ScalarConverter::convert(std::string argument)
 	if (type == DOUBLE)
 		fromDouble(argument);
 	if (type == PSEUDOFLOAT)
+	{
+		argument.erase(argument.length() - 1);
 		fromPseudoFloat(argument);
+	}
 	if (type == PSEUDODOUBLE)
 		fromPseudoFloat(argument);
 }

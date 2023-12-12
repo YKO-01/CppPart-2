@@ -6,7 +6,7 @@
 /*   By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 08:30:09 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/11/18 17:00:47 by ayakoubi         ###   ########.fr       */
+/*   Updated: 2023/12/12 12:37:31 by ayakoubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,23 +75,25 @@ const char*	Bureaucrat::GradeTooLowException::what() const throw()
 	return ("exeption in GradeTooLowException !");
 }
 
-// __ Increment & Decrement ____________________________________________________
+// __ Increment Bureaucrat _____________________________________________________
 // =============================================================================
 void	Bureaucrat::increment()
 {
-	if (this->getGrade() < 150)
+	if (this->getGrade() > 1)
 	{
-		this->grade++;
+		this->grade--;
 		return;
 	}
 	throw Bureaucrat::GradeTooLowException();
 }
 
+// __ Decrement Bureaucrat _____________________________________________________
+// =============================================================================
 void	Bureaucrat::decrement()
 {
-	if (this->getGrade() > 1)
+	if (this->getGrade() < 150)
 	{
-		this->grade--;
+		this->grade++;
 		return ;
 	}
 	throw Bureaucrat::GradeTooHighException();
