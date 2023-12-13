@@ -34,7 +34,7 @@ Array<T>::Array(const Array& copy)
 		if (!arr)
 			exit(EXIT_FAILURE);
 	}
-	int i;
+	unsigned int i;
 	i = -1;
 	while (++i < n)
 		this->arr[i] = copy.arr[i];
@@ -56,7 +56,7 @@ Array<T>&	Array<T>::operator = (const Array& copy)
 		if (!arr)
 			exit(EXIT_FAILURE);
 	}
-	int i;
+	unsigned int i;
 	i = -1;
 	while (++i < n)
 		this->arr[i] = copy.arr[i];
@@ -66,7 +66,7 @@ Array<T>&	Array<T>::operator = (const Array& copy)
 template <class T>
 T&	Array<T>::operator [] (int index)
 {
-	if (index >= n || index < 0)
+	if (index >= (int)n || index < 0)
 		throw throwException();
 	return (arr[index]);
 }
@@ -78,7 +78,7 @@ const char* Array<T>::throwException::what() const throw()
 }
 
 template <class T>
-int	Array<T>::size() const
+unsigned int	Array<T>::size() const
 {
 	return (n);
 }
