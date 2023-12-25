@@ -6,7 +6,7 @@
 /*   By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/22 17:01:36 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/12/23 19:58:08 by ayakoubi         ###   ########.fr       */
+/*   Updated: 2023/12/25 12:29:26 by ayakoubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ ParsingFile::~ParsingFile()
 
 // __ checkLine() ______________________________________________________________
 // =============================================================================
-void	ParsingFile::parsingLine(std::string line,) 
+void	ParsingFile::parsingLine(std::string line) 
 {
 	char *str[3];
 	char *date[4];

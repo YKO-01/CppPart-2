@@ -6,7 +6,7 @@
 /*   By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 11:44:04 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/12/24 12:11:59 by ayakoubi         ###   ########.fr       */
+/*   Updated: 2023/12/25 15:56:11 by ayakoubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,24 @@
 void	readFile(std::ifstream& file)
 {
 	std::string		line;
+	std::string		date;
+	std::string		btc;
 	ParsingFile		pfile;
 	t_data			data;
 
 	std::getline(file, line); 
 	if (!pfile.validFormat(line, "date | value"))
 		throw MyException("bad input => " + line);
-	while (std::getline(file, line))
+	while (std::getline(file, date, '|') && std::getline(file, btc))
 	{
+		line = date + "|" + btc;
 		try
 		{
 			pfile.handlingErrors(line, &data);
 	   		pfile.checkValues(line, &data);
-			pfile.parsingLine(line);
+			date.erase(date.length() - 1);
+			btc.erase(0, 1);
+			std::cout << date << "," << btc << std::endl;
 		}
 		catch (std::exception& e)
 		{
@@ -41,14 +46,18 @@ void	readFile(std::ifstream& file)
 int main(int ac, char **av)
 {
 	std::ifstream file(av[1]);
-	std::ifstream fileData("
+	std::ifstream dataFile("data.csv");
+	BitcoinExchange btcEx;
 
 	try
 	{
 		if (ac != 2)
 			throw MyException("could not open file.");
+		if (!dataFile.is_open())
+			throw MyException("can't open this file.");
+		btcEx.fillMap(dataFile);
 		if (!file.is_open())
-			throw MyException("can't open this file."); 
+			throw MyException("can't open this file.");
 		readFile(file);
 	}
 	catch(std::exception& e)

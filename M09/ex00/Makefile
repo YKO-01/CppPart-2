@@ -6,7 +6,7 @@
 #    By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/13 12:57:06 by ayakoubi          #+#    #+#              #
-#    Updated: 2023/12/23 18:42:00 by ayakoubi         ###   ########.fr        #
+#    Updated: 2023/12/25 12:27:51 by ayakoubi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ NAME		=	btc
 CPP			=	c++
 CPPFLAGS	=	-Wall -Wextra -Werror -std=c++98
 OBJDIR		=	objs
-SRC			:=	main ParsingFile MyException
+SRC			:=	main ParsingFile MyException BitcoinExchange
 OBJ			:=	$(addprefix $(OBJDIR)/, $(addsuffix .o, $(SRC)))
 SRC			:=	$(addsuffix .cpp, $(SRC))
 
