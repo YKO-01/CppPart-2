@@ -6,7 +6,7 @@
 /*   By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 11:44:04 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/12/25 15:56:11 by ayakoubi         ###   ########.fr       */
+/*   Updated: 2023/12/25 20:55:57 by ayakoubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "ParsingFile.hpp"
 #include "MyException.hpp"
 
-void	readFile(std::ifstream& file)
+void	readFile(std::ifstream& file, BitcoinExchange btcEx)
 {
 	std::string		line;
 	std::string		date;
@@ -35,6 +35,8 @@ void	readFile(std::ifstream& file)
 			date.erase(date.length() - 1);
 			btc.erase(0, 1);
 			std::cout << date << "," << btc << std::endl;
+			btcEx.getAmount(date, btc);
+
 		}
 		catch (std::exception& e)
 		{
@@ -58,7 +60,7 @@ int main(int ac, char **av)
 		btcEx.fillMap(dataFile);
 		if (!file.is_open())
 			throw MyException("can't open this file.");
-		readFile(file);
+		readFile(file, btcEx);
 	}
 	catch(std::exception& e)
 	{

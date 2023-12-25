@@ -6,7 +6,7 @@
 /*   By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/23 17:24:45 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/12/25 14:45:18 by ayakoubi         ###   ########.fr       */
+/*   Updated: 2023/12/25 20:28:59 by ayakoubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,3 +45,23 @@ void	BitcoinExchange::fillMap(std::ifstream& file)
 	std::map<std::string, float>::iterator	it;
 }
 
+// __ fill Map _________________________________________________________________
+// =============================================================================
+
+void	BitcoinExchange::getAmount(std::string date, std::string btc)
+{
+	(void) date;
+	(void) btc;
+	std::map<std::string, float>::iterator it;
+	it = btcMap.begin();
+	size_t	i;
+	i = -1;
+	while (++i < btcMap.size())
+	{
+		if (it->first == date)
+			break;
+		it++;
+	}
+	float btcnbr = std::stof(btc.c_str());
+	std::cout << date << " => " << btcnbr * it->second << std::endl;
+}	

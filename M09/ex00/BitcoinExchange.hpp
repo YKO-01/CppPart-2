@@ -6,7 +6,7 @@
 /*   By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 10:37:49 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/12/25 14:56:06 by ayakoubi         ###   ########.fr       */
+/*   Updated: 2023/12/25 19:53:41 by ayakoubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ class BitcoinExchange
 		~BitcoinExchange();
 		
 		void	fillMap(std::ifstream& file);
+		void	getAmount(std::string date, std::string btc); 
 
 };
 
