@@ -6,7 +6,7 @@
 /*   By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 09:52:31 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/12/05 12:58:17 by ayakoubi         ###   ########.fr       */
+/*   Updated: 2023/12/17 15:07:44 by ayakoubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ PresidentialPardonForm&	PresidentialPardonForm::operator = (const PresidentialPa
 // =============================================================================
 void	PresidentialPardonForm::execute(const Bureaucrat &executer) const
 {
-	if (executer.getGrade() <= sign && executer.getGrade() <= exec)
+	if (executer.getGrade() <= sign && getSign() == true)
 	{
 		std::cout << this->target
 			<< " has been pardoned by Zaphod Beeblebrox" << std::endl; 		

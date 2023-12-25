@@ -6,7 +6,7 @@
 /*   By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 19:32:30 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/11/20 18:13:32 by ayakoubi         ###   ########.fr       */
+/*   Updated: 2023/12/25 09:26:32 by ayakoubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,21 @@ Serializer::Serializer()
 {
 }
 
+Serializer::Serializer(const Serializer& copy)
+{
+	*this = copy;
+}
+
 Serializer::~Serializer()
 {
+}
+
+// __ Assignemet Operator ______________________________________________________
+// =============================================================================
+Serializer&	Serializer::operator=(const Serializer& copy)
+{
+	(void) copy;
+	return (*this);
 }
 
 // __ Serialize ________________________________________________________________

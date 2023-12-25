@@ -6,7 +6,7 @@
 /*   By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 08:30:22 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/12/11 13:18:42 by ayakoubi         ###   ########.fr       */
+/*   Updated: 2023/12/17 16:14:20 by ayakoubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,14 @@ int main(void)
 {
 	try
 	{
-		Bureaucrat b("bureau", 35);
+		Bureaucrat b("bureau", 16);
 		Intern someRandomIntern;
 		AForm* rrf;
 		rrf = someRandomIntern.makeForm("robotomy request", "Bender");
 		if (rrf)
 		{
-			rrf->execute(b);
+			b.signForm(*rrf);
+			b.executeForm(*rrf);
 			delete rrf;
 		}
 	}

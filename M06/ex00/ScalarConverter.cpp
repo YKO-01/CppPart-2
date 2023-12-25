@@ -6,7 +6,7 @@
 /*   By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 10:06:33 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/12/12 10:46:08 by ayakoubi         ###   ########.fr       */
+/*   Updated: 2023/12/25 09:05:20 by ayakoubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ bool	ScalarConverter::checkConvert(std::string arg)
 			ret = 1;
 		if (i < len && ret == 1 && arg[i] == ' ' && arg[i + 1] != ' ')
 			return (false);
+		if (arg[len] == 'f' && arg[len - 1] == '.')
+			return (true);
 		if (arg[len] == 'f' && arg[len - 1] != '.')
 			return (true);
 		if (arg[i] != ' ' && arg[i] != '.' && !isdigit(arg[i]))
@@ -93,8 +95,9 @@ e_type ScalarConverter::getType(std::string arg)
 
 // __ Display Impossible _______________________________________________________
 // =============================================================================
-void	ScalarConverter::displayImpossible()
+void	ScalarConverter::displayImpossible(std::string arg)
 {
+	(void) arg;
 	std::cout << "char: impossible" << std::endl;
 	std::cout << "int: impossible" << std::endl;
 	std::cout << "float: impossible" << std::endl;
@@ -103,8 +106,11 @@ void	ScalarConverter::displayImpossible()
 
 // __ Cast From Char ___________________________________________________________
 // =============================================================================
-void	ScalarConverter::fromChar(char c)
+void	ScalarConverter::fromChar(std::string arg)
 {
+	char c;
+
+	c = arg[0];
 	std::cout << "char: '" << c << "'" << std::endl;
 	std::cout << "int: " << static_cast<int>(c) << std::endl;
 	std::cout << "float: " << static_cast<float>(c) << ".0f" << std::endl;
@@ -118,7 +124,7 @@ void	ScalarConverter::fromInt(std::string arg)
 	std::istringstream varInt(arg);
 	int nbr;
 	if (!(varInt >> nbr))
-		displayImpossible();
+		displayImpossible(arg);
 	else
 	{
 		if (nbr > 256)
@@ -141,7 +147,7 @@ void	ScalarConverter::fromFloat(std::string arg)
 	std::istringstream varFloat(arg);
 	float nbr;
 	if (!(varFloat >> nbr))
-		displayImpossible();
+		displayImpossible(arg);
 	else
 	{
 		if (nbr > 256)
@@ -167,7 +173,7 @@ void	ScalarConverter::fromDouble(std::string arg)
 	std::istringstream varDouble(arg);
 	double nbr;
 	if (!(varDouble >> nbr))
-		displayImpossible();
+		displayImpossible(arg);
 	else
 	{
 		if (nbr > 256)
@@ -219,24 +225,15 @@ void ScalarConverter::convert(std::string argument)
 	e_type type;
 
 	type = getType(argument);
-	if (type == STRING)
-		displayImpossible();
-	if (type == CHAR)
-		fromChar(argument[0]);
-	if (type == INT)
-		fromInt(argument);
-	if (type == FLOAT)
+	if (type == FLOAT || type == PSEUDOFLOAT)
+			argument.erase(argument.length() - 1);
+	void	(*fun[7])(std::string) = {displayImpossible, fromChar, fromInt,
+									fromFloat, fromDouble, fromPseudoFloat,
+									fromPseudoDouble};
+	e_type dataType[7] = {STRING, CHAR, INT, FLOAT, DOUBLE, PSEUDOFLOAT, PSEUDODOUBLE};
+	for (int i = 0; i < 7; i++)
 	{
-		argument.erase(argument.length() - 1);
-		fromFloat(argument);
+		if (type == dataType[i])
+			(*fun[i])(argument);
 	}
-	if (type == DOUBLE)
-		fromDouble(argument);
-	if (type == PSEUDOFLOAT)
-	{
-		argument.erase(argument.length() - 1);
-		fromPseudoFloat(argument);
-	}
-	if (type == PSEUDODOUBLE)
-		fromPseudoFloat(argument);
 }

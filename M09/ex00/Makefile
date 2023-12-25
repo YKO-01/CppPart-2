@@ -6,20 +6,19 @@
 #    By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/13 12:57:06 by ayakoubi          #+#    #+#              #
-#    Updated: 2023/12/13 21:40:35 by ayakoubi         ###   ########.fr        #
+#    Updated: 2023/12/23 18:42:00 by ayakoubi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # __ VAR & COMPILATION _________________________________________________________
 # ==============================================================================
-NAME = btc
-CPP	=	c++
-CPPFLAGS =	-Wall -Wextra -Werror -std=c++98
-
-SRC	:=	main 
-
-OBJ	:=	$(addsuffix .o, $(SRC))
-SRC	:=	$(addsuffix .cpp, $(SRC))
+NAME		=	btc
+CPP			=	c++
+CPPFLAGS	=	-Wall -Wextra -Werror -std=c++98
+OBJDIR		=	objs
+SRC			:=	main ParsingFile MyException
+OBJ			:=	$(addprefix $(OBJDIR)/, $(addsuffix .o, $(SRC)))
+SRC			:=	$(addsuffix .cpp, $(SRC))
 
 # __ COLOR _____________________________________________________________________
 # ==============================================================================
@@ -32,7 +31,8 @@ RESET = \033[0m
 
 # __ RULES _____________________________________________________________________
 # ==============================================================================
-%.o: %.cpp
+$(OBJDIR)/%.o: %.cpp
+	@mkdir -p $(OBJDIR)
 	@$(CPP) $(CPPFLAGS) -c $< -o $@
 	@echo "$(YELLOW) compile >>>> $< $(RESET)"
 

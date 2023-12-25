@@ -6,7 +6,7 @@
 /*   By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 09:50:33 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/11/24 10:01:43 by ayakoubi         ###   ########.fr       */
+/*   Updated: 2023/12/17 15:07:53 by ayakoubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ RobotomyRequestForm&	RobotomyRequestForm::operator = (const RobotomyRequestForm&
 // =============================================================================
 void	RobotomyRequestForm::execute(const Bureaucrat &executer) const
 {
-	if (executer.getGrade() <= sign && executer.getGrade() <= exec)
+	if (executer.getGrade() <= sign && getSign() == true)
 	{
 		if (executer.getCounter() % 2 == 0)
 		{

@@ -6,7 +6,7 @@
 /*   By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 10:06:43 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/12/03 10:34:41 by ayakoubi         ###   ########.fr       */
+/*   Updated: 2023/12/24 12:38:53 by ayakoubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,9 @@ class ScalarConverter
 
 		static bool	checkConvert(std::string arg);
 		static e_type	getType(std::string arg);
-		static void	displayImpossible();
+		static void	displayImpossible(std::string arg);
 		
-		static void	fromChar(char c);
+		static void	fromChar(std::string arg);
 		static void	fromInt(std::string arg);
 		static void	fromFloat(std::string arg);
 		static void	fromDouble(std::string arg);

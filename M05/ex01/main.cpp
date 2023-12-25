@@ -6,7 +6,7 @@
 /*   By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 08:30:22 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/12/12 12:44:31 by ayakoubi         ###   ########.fr       */
+/*   Updated: 2023/12/17 16:10:29 by ayakoubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,5 @@ int main(void)
 	{
 		std::cout << "Exception : " << e.what() << std::endl;
 	}
-
 	return (0);
 }

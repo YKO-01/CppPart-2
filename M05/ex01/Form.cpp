@@ -6,7 +6,7 @@
 /*   By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 11:27:43 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/12/05 12:42:35 by ayakoubi         ###   ########.fr       */
+/*   Updated: 2023/12/17 16:01:25 by ayakoubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,12 @@ std::ostream&	operator << (std::ostream& out, const Form& instance)
 // =============================================================================
 const char*	Form::GradeTooHighException::what() const throw()
 {
-	return ("Exception: in GradeToohighException");
+	return ("GradeToohighException !");
 }
 
 const char* Form::GradeTooLowException::what() const throw()
 {
-	return ("Exception: in GradeTooLowException");
+	return ("GradeTooLowException !");
 }
 
 // __ Get (Name, sign, Gradesign, GradeExec) ___________________________________

@@ -6,7 +6,7 @@
 /*   By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/21 09:53:19 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/11/24 09:48:23 by ayakoubi         ###   ########.fr       */
+/*   Updated: 2023/12/17 15:06:36 by ayakoubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ ShrubberyCreationForm&	ShrubberyCreationForm::operator = (const ShrubberyCreatio
 // =============================================================================
 void	ShrubberyCreationForm::execute(Bureaucrat const &executer) const
 {
-	if (executer.getGrade() <= sign && executer.getGrade() <= exec)
+	if (executer.getGrade() <= sign && getSign() == true)
 	{
 		std::ofstream outfile;
 		outfile.open(this->target + "_shrubbery");

@@ -6,7 +6,7 @@
 /*   By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 10:37:49 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/12/13 21:39:43 by ayakoubi         ###   ########.fr       */
+/*   Updated: 2023/12/24 12:08:00 by ayakoubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,19 @@
 #include <iostream>
 #include <map>
 #include <fstream>
-#include <cstring>
 
+class BitcoinExchange
+{
+	private :
+		std::map<std::string date, float> btcFile;
 
-	
+	publlic	:
+		BitcoinExchange();
+		~BitcoinExchange();
+		
+		void	fillMap(std::string line);
+
+};
+
 
 #endif

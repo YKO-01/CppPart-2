@@ -6,7 +6,7 @@
 /*   By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 08:30:22 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/12/04 19:44:29 by ayakoubi         ###   ########.fr       */
+/*   Updated: 2023/12/17 16:03:48 by ayakoubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,9 @@ int main(void)
 	AForm *f = NULL;
 	try
 	{
-		Bureaucrat b("contable", 35);
+		Bureaucrat b("bureau1", 35);
 		f = new ShrubberyCreationForm("shrubbery");
+		b.signForm(*f);
 		b.executeAForm(*f);
 		delete f;
 	}
@@ -33,8 +34,9 @@ int main(void)
 	std::cout << "===============================" << std::endl;
 	try
 	{
-		Bureaucrat b("contable", 35);
+		Bureaucrat b("bureau2", 35);
 		f = new RobotomyRequestForm("robot");
+		b.signForm(*f);
 		b.executeAForm(*f);
 		delete f;
 	}
@@ -46,8 +48,9 @@ int main(void)
 	std::cout << "===============================" << std::endl;
 	try
 	{
-		Bureaucrat b("contable", 35);
+		Bureaucrat b("bureau3", 15);
 		f = new PresidentialPardonForm("president");
+		b.signForm(*f);
 		b.executeAForm(*f);
 		delete f;
 	}
