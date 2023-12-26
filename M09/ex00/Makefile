@@ -6,7 +6,7 @@
 #    By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/13 12:57:06 by ayakoubi          #+#    #+#              #
-#    Updated: 2023/12/25 12:27:51 by ayakoubi         ###   ########.fr        #
+#    Updated: 2023/12/26 11:29:46 by ayakoubi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,7 +44,7 @@ $(NAME) :	$(OBJ)
 
 clean:
 	@echo "$(RED) REMOVED OBJ $(RESET)"
-	@rm -rf *.o
+	@rm -rf $(OBJDIR)
 
 fclean:	clean
 	@echo "$(RED) REMOVED $(NAME) $(RESET)"

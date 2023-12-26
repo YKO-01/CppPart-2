@@ -6,7 +6,7 @@
 /*   By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 11:44:04 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/12/25 20:55:57 by ayakoubi         ###   ########.fr       */
+/*   Updated: 2023/12/26 11:12:07 by ayakoubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ void	readFile(std::ifstream& file, BitcoinExchange btcEx)
 	   		pfile.checkValues(line, &data);
 			date.erase(date.length() - 1);
 			btc.erase(0, 1);
-			std::cout << date << "," << btc << std::endl;
 			btcEx.getAmount(date, btc);
 
 		}
