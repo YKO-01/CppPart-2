@@ -6,7 +6,7 @@
 /*   By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/03 11:53:21 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/12/13 11:16:56 by ayakoubi         ###   ########.fr       */
+/*   Updated: 2024/01/02 00:29:47 by ayakoubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,6 @@ class Array
 		~Array();
 		Array& operator = (const Array& copy);
 		T& operator [] (int index);
-
-		class throwException : public std::exception{
-			public :
-				virtual const char* what() const throw();
-		};
 		
 		unsigned int	size() const;
 };

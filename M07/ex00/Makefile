@@ -6,7 +6,7 @@
 #    By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/23 12:17:09 by ayakoubi          #+#    #+#              #
-#    Updated: 2023/12/05 09:17:22 by ayakoubi         ###   ########.fr        #
+#    Updated: 2024/01/01 23:47:45 by ayakoubi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,13 +33,13 @@ RESET = \033[0m
 # ==============================================================================
 %.o: %.cpp
 	@$(CPP) $(CPPFLAGS) -c $< -o $@
-	@echo "$(YELLOW) compile >>>> $< $(RESET)"
+	@echo "$(GREEN) [OK] $(RESET) $(YELLOW) compile >>>> $< $(RESET)"
 
 all:	$(NAME)
 
 $(NAME) :	$(OBJ)
 	@$(CPP) $(CPPFLAGS) $^ -o $(NAME)
-	@@echo "$(GREEN) ------ Built success ------ $(RESET)"
+	@@echo "$(GREEN) ------ DONE ------ $(RESET)"
 
 clean:
 	@echo "$(RED) REMOVED OBJ $(RESET)"
