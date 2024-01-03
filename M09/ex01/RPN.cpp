@@ -6,7 +6,7 @@
 /*   By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/01 01:42:25 by ayakoubi          #+#    #+#             */
-/*   Updated: 2024/01/02 01:14:45 by ayakoubi         ###   ########.fr       */
+/*   Updated: 2024/01/04 00:34:03 by ayakoubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ RPN::~RPN()
 
 // __ Assignement operator _____________________________________________________
 // =============================================================================
-
-void copyStack(std::stack<int> *dst, std::stack<int> &src)
+/*
+void copyStack(std::deque<int> *dst, std::stack<int> &src)
 {
 	dst->pop();
 	if (arr.size())
@@ -38,14 +38,28 @@ void copyStack(std::stack<int> *dst, std::stack<int> &src)
 	dst.push(src.top());
 	src.pop();
 }
-
-PRN& RPN::operator = (const RPN& copy)
+*/
+RPN& RPN::operator = (const RPN& copy)
 {
-	std::stack<int> tmp;
-	tmp = copy.arr
-	if (arr.size())
-		copyStack();
-	else
-	{
+	arr = copy.arr;
+	return (*this);
+}
 
-		
+// __ Calculate() ______________________________________________________________
+// =============================================================================
+void	RPN::calculate(char *str, std::deque<int> &arr)
+{
+	char s[4] = {'+', '-', '/', '*'};
+	int i = -1;
+	int len;
+	while (++i < 4)
+		if (*str == s[i])
+			break;
+	if (*str++ && std::isdigit(*str))
+		arr.posh_back(std::atoi(*str);
+	len = arr.size()
+	if (*str)
+		calculte(str, arr);
+	if (arr.size()
+		pop_front()	
+}

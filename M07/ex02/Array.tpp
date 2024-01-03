@@ -38,17 +38,19 @@ Array<T>::Array(unsigned int n)
 template <class T>
 Array<T>::Array(const Array& copy)
 {
-	if (this->n != copy.size())
+	try
 	{
 		this->n = copy.size();
 		this->arr = new T[n];
-		if (!arr)
-			exit(EXIT_FAILURE);
+		unsigned int i;
+		i = -1;
+		while (++i < n)
+			this->arr[i] = copy.arr[i];
 	}
-	unsigned int i;
-	i = -1;
-	while (++i < n)
-		this->arr[i] = copy.arr[i];
+	catch(std::bad_alloc& e)
+	{
+		std::cout << e.what() << std::endl;
+	}
 }
 
 template <class T>
@@ -59,18 +61,24 @@ Array<T>::~Array()
 
 template <class T>
 Array<T>&	Array<T>::operator = (const Array& copy)
-{	
-	if (this->n != copy.size())
+{
+	try
 	{
-		this->n = copy.size();
-		this->arr = new T[n];
-		if (!arr)
-			exit(EXIT_FAILURE);
+		if (this->n < copy.size())
+		{
+			this->n = copy.size();
+			delete this->arr;
+			this->arr = new T[n];
+		}
+		unsigned int i;
+		i = -1;
+		while (++i < n)
+			this->arr[i] = copy.arr[i];
 	}
-	unsigned int i;
-	i = -1;
-	while (++i < n)
-		this->arr[i] = copy.arr[i];
+	catch(std::bad_alloc& e)
+	{
+		std::cout << e.what() << std::endl;
+	}
 	return (*this);
 }
 

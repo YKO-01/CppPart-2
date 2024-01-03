@@ -6,7 +6,7 @@
 /*   By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/31 15:16:28 by ayakoubi          #+#    #+#             */
-/*   Updated: 2024/01/02 00:21:48 by ayakoubi         ###   ########.fr       */
+/*   Updated: 2024/01/03 00:08:02 by ayakoubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,18 @@
 #define RPN_HPP
 
 #include <iostream>
-#include <stack>
+#include <deque>
 
 class RPN
 {
 	private:
-		std::stack<int>		arr;
+		std::deque<int>		arr;
 	public:
 		RPN();
 		RPN(const RPN& copy);
-		~PRN();
+		~RPN();
 		RPN&	operator = (const RPN& copy);
+		void	calculate(std::deque<int> &arr);
 };
 
 

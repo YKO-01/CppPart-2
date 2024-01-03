@@ -6,7 +6,7 @@
 #    By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/26 12:21:06 by ayakoubi          #+#    #+#              #
-#    Updated: 2023/12/27 10:11:51 by ayakoubi         ###   ########.fr        #
+#    Updated: 2024/01/03 00:01:39 by ayakoubi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ NAME		=	RPN
 CPP			=	c++
 CPPFLAGS	=	-Wall -Wextra -Werror -std=c++98
 OBJDIR		=	objs
-SRC			:=	main MyException ParsingArg
+SRC			:=	main MyException ParsingArg RPN
 OBJ			:=	$(addprefix $(OBJDIR)/, $(addsuffix .o, $(SRC)))
 SRC			:=	$(addsuffix .cpp, $(SRC))
 
