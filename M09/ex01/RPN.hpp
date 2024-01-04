@@ -6,7 +6,7 @@
 /*   By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/31 15:16:28 by ayakoubi          #+#    #+#             */
-/*   Updated: 2024/01/03 00:08:02 by ayakoubi         ###   ########.fr       */
+/*   Updated: 2024/01/04 17:29:36 by ayakoubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ class RPN
 		RPN(const RPN& copy);
 		~RPN();
 		RPN&	operator = (const RPN& copy);
-		void	calculate(std::deque<int> &arr);
+		void	calculate(char *str, int *ret);
 };
 
 

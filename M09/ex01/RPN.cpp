@@ -6,7 +6,7 @@
 /*   By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/01 01:42:25 by ayakoubi          #+#    #+#             */
-/*   Updated: 2024/01/04 00:34:03 by ayakoubi         ###   ########.fr       */
+/*   Updated: 2024/01/04 19:37:17 by ayakoubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,21 +45,56 @@ RPN& RPN::operator = (const RPN& copy)
 	return (*this);
 }
 
-// __ Calculate() ______________________________________________________________
-// =============================================================================
-void	RPN::calculate(char *str, std::deque<int> &arr)
+int getValue(char c, int first, int second)
+{
+	if (c == '+')
+		return (first + second);
+	if (c == '-')
+		return (first - second);
+	if (c == '/')
+		return (first / second);
+	return (first * second);
+}
+
+
+int getOperator(char c)
 {
 	char s[4] = {'+', '-', '/', '*'};
-	int i = -1;
-	int len;
+	int i;
+
+	i = -1;
 	while (++i < 4)
-		if (*str == s[i])
-			break;
-	if (*str++ && std::isdigit(*str))
-		arr.posh_back(std::atoi(*str);
-	len = arr.size()
-	if (*str)
-		calculte(str, arr);
-	if (arr.size()
-		pop_front()	
+		if (c == s[i])
+			return (s[i]);
+	return (-1);
+}
+
+// __ Calculate() ______________________________________________________________
+// =============================================================================
+void	RPN::calculate(char *str, int *ret)
+{
+	char s = 0;
+	int len;
+	int nbr[2];
+	
+	len = -1;
+	while (*str && getOperator(*str) < 0)
+	{
+		if (std::isdigit(*str))
+			arr.push_back(std::atoi(&(*str)));
+		str++;
+	}
+	while (*str && (*str == ' '))
+		str++;
+	if (getOperator(*str) >= 0)
+		s = getOperator(*str++);
+	while (arr.size() && ++len < 2)
+	{
+		nbr[len] = arr.back();
+		arr.pop_back();
+	}
+	*ret = getValue(s, nbr[1], nbr[0]);
+	arr.push_back(*ret);
+	if (*str && arr.size())
+		calculate(str, ret);	
 }
