@@ -6,7 +6,7 @@
 /*   By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/01 01:42:25 by ayakoubi          #+#    #+#             */
-/*   Updated: 2024/01/04 19:37:17 by ayakoubi         ###   ########.fr       */
+/*   Updated: 2024/01/05 00:53:57 by ayakoubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,23 +29,15 @@ RPN::~RPN()
 
 // __ Assignement operator _____________________________________________________
 // =============================================================================
-/*
-void copyStack(std::deque<int> *dst, std::stack<int> &src)
-{
-	dst->pop();
-	if (arr.size())
-		copyStack(dst, src);
-	dst.push(src.top());
-	src.pop();
-}
-*/
 RPN& RPN::operator = (const RPN& copy)
 {
 	arr = copy.arr;
 	return (*this);
 }
 
-int getValue(char c, int first, int second)
+// __ getValue() _______________________________________________________________
+// =============================================================================
+int	RPN::getValue(char c, int first, int second)
 {
 	if (c == '+')
 		return (first + second);
@@ -56,8 +48,9 @@ int getValue(char c, int first, int second)
 	return (first * second);
 }
 
-
-int getOperator(char c)
+// __ get Operator _____________________________________________________________
+// =============================================================================
+int RPN::getOperator(char c)
 {
 	char s[4] = {'+', '-', '/', '*'};
 	int i;

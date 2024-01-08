@@ -5,34 +5,29 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/27 09:54:45 by ayakoubi          #+#    #+#             */
-/*   Updated: 2024/01/05 00:53:43 by ayakoubi         ###   ########.fr       */
+/*   Created: 2024/01/05 01:11:03 by ayakoubi          #+#    #+#             */
+/*   Updated: 2024/01/08 20:48:59 by ayakoubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ParsingArg.hpp"
-#include "RPN.hpp"
+#include "PmergeMe.hpp"
 
 int main(int ac, char **av)
 {
-	ParsingArg	pArg;
-	RPN	rpn;
-	int ret;
-
-
-	if (ac != 2)
-		return (1);
+	if (ac <= 2)
+		return (0);
 	try
 	{
-		pArg.validArgument(av[1]);
-		rpn.calculate(av[1], &ret);
-		std::cout << ret << std::endl;
-
+		ParsingArg parg;
+		parg.validArgument(&av[1]);
+		PmergeMe pm(&av[1]);
+		pm.initVectors();
+		return (0);
 	}
-	catch(std::exception& e)
+	catch (std::exception& e)
 	{
-		std::cerr << e.what() << std::endl;
+		std::cout << e.what() << std::endl;
 	}
 	return (0);
 }
-

@@ -1,38 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   MyException.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/27 09:54:45 by ayakoubi          #+#    #+#             */
-/*   Updated: 2024/01/05 00:53:43 by ayakoubi         ###   ########.fr       */
+/*   Created: 2023/12/23 17:39:03 by ayakoubi          #+#    #+#             */
+/*   Updated: 2023/12/23 18:46:00 by ayakoubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ParsingArg.hpp"
-#include "RPN.hpp"
+#ifndef MYEXCEPTION_HPP
+#define MYEXCEPTION_HPP
 
-int main(int ac, char **av)
+#include <iostream>
+
+class MyException : public std::exception
 {
-	ParsingArg	pArg;
-	RPN	rpn;
-	int ret;
+	private:
+		std::string err;
+	public :
+		MyException();
+		MyException(std::string error);
+		virtual ~MyException() throw();
+		virtual const char* what() const throw();
+};
 
-
-	if (ac != 2)
-		return (1);
-	try
-	{
-		pArg.validArgument(av[1]);
-		rpn.calculate(av[1], &ret);
-		std::cout << ret << std::endl;
-
-	}
-	catch(std::exception& e)
-	{
-		std::cerr << e.what() << std::endl;
-	}
-	return (0);
-}
-
+#endif

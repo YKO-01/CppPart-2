@@ -1,38 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   ParsingArg.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/27 09:54:45 by ayakoubi          #+#    #+#             */
-/*   Updated: 2024/01/05 00:53:43 by ayakoubi         ###   ########.fr       */
+/*   Created: 2023/12/26 13:07:53 by ayakoubi          #+#    #+#             */
+/*   Updated: 2024/01/05 18:44:49 by ayakoubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ParsingArg.hpp"
-#include "RPN.hpp"
+#ifndef PARSINGARG_HPP
+#define PARSINGARG_HPP
 
-int main(int ac, char **av)
+#include <iostream>
+#include <cctype>
+#include <vector>
+#include "MyException.hpp"
+
+class ParsingArg
 {
-	ParsingArg	pArg;
-	RPN	rpn;
-	int ret;
+	private :
+		std::vector<int>	arr;
+	public:
+		ParsingArg();
+		~ParsingArg();
+
+		void	validArgument(char **arg);
+		void	scanArgument(char **arg);
+		void	checkMatters(std::string arg);
+		void	validOperation(std::string arg);
+		int		isoperator(char c);
+
+};
 
 
-	if (ac != 2)
-		return (1);
-	try
-	{
-		pArg.validArgument(av[1]);
-		rpn.calculate(av[1], &ret);
-		std::cout << ret << std::endl;
-
-	}
-	catch(std::exception& e)
-	{
-		std::cerr << e.what() << std::endl;
-	}
-	return (0);
-}
-
+#endif
