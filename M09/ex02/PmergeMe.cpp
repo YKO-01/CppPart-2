@@ -6,7 +6,7 @@
 /*   By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 18:42:39 by ayakoubi          #+#    #+#             */
-/*   Updated: 2024/01/08 21:35:25 by ayakoubi         ###   ########.fr       */
+/*   Updated: 2024/01/09 10:02:42 by ayakoubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,29 +50,33 @@ PmergeMe& PmergeMe::operator = (const PmergeMe& copy)
 	return (*this);
 }
 
+// __ Asignement Operator ______________________________________________________
+// =============================================================================
 void	PmergeMe::initVectors()
 {
 	std::vector<int>::iterator	it = vec.begin();
+	vector::iterator it2;
+	it2 = vec.begin();
+	while (it2 != vec.end())
+	{
+		std::cout << *it2 << std::endl;
+		it2++;
+	}
+
 	fillDVector(it);
 	it = vec.begin();
-//	dvector::iterator it2 = dvec.begin();
-/*	size_t j;
-	size_t i;
-	i = -1;
-	size_t size = dvec.size();
-	while (++i < size)
-	{
-		j = -1;
-		while (++j < dvec[i].size())
-			std::cout << dvec[i][j] << std::endl;
-	}*/
-	createPair();
+	printVector();
+	while (dvec.size() > 3)
+		createPair();
 }
 
+// __ Asignement Operator ______________________________________________________
+// =============================================================================
 void	PmergeMe::createPair()
 {
 	vector::iterator it;
 	dvector::iterator dit;
+	dvector::iterator tmp;
 	size_t i;
 
 	dit = dvec.begin();
@@ -80,29 +84,40 @@ void	PmergeMe::createPair()
 	{
 		i = -1;
 		it = dit->begin();
-		while (it != dit->end())
+		if (dit != dvec.end() - 1)
 		{
-			while (++i < 2)
-			{
-				dit->insert(*it, dit->
-				std::cout << *it << std::endl;
-			}
-			it++;
+			tmp = dit + 1;
+			if (*(dit->end() - 1) <= *(tmp->end() - 1))
+				dit->insert(dit->end(), tmp->begin(), tmp->end());
+			else
+				dit->insert(dit->begin(), tmp->begin(), tmp->end());
+			tmp->erase(tmp->begin(), tmp->end());
+			dvec.erase(tmp);
 		}
 		dit++;
 	}
+	printVector();
 }
 
+// __ Asignement Operator ______________________________________________________
+// =============================================================================
 void	PmergeMe::printVector()
 {
+	vector::iterator it;
+	dvector::iterator dit;
+
 	std::cout << "====== Vector 2 ===========" << std::endl;
-	size_t i;
-	std::vector<int>::iterator	it1 = vec.begin();
-	i = -1;
-	while (++i < vec.size())
+	dit = dvec.begin();
+	while (dit != dvec.end())
 	{
-		std::cout << *it1 << std::endl;
-		it1++;
+		std::cout << "this vec" << std::endl;
+		it = dit->begin();		
+		while (it != dit->end())
+		{
+			std::cout << *it << std::endl;
+			it++;
+		}
+		dit++;
 	}
 }
 
@@ -114,8 +129,8 @@ void	PmergeMe::fillDVector(std::vector<int>::iterator it)
 	std::vector<int> tmp;
 	tmp.push_back(*it);
 	dvec.push_back(tmp);
-	if (it != vec.end())
+	if (it != vec.end() - 1)
 		fillDVector(++it);
-	//vec.pop_back();
+	vec.pop_back();
 }
 
