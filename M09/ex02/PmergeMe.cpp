@@ -6,7 +6,7 @@
 /*   By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 18:42:39 by ayakoubi          #+#    #+#             */
-/*   Updated: 2024/01/09 10:02:42 by ayakoubi         ###   ########.fr       */
+/*   Updated: 2024/01/09 13:19:19 by ayakoubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,20 +55,24 @@ PmergeMe& PmergeMe::operator = (const PmergeMe& copy)
 void	PmergeMe::initVectors()
 {
 	std::vector<int>::iterator	it = vec.begin();
-	vector::iterator it2;
-	it2 = vec.begin();
-	while (it2 != vec.end())
-	{
-		std::cout << *it2 << std::endl;
-		it2++;
-	}
+	dvector::iterator it2;
+	dvector::iterator tmp;
 
 	fillDVector(it);
 	it = vec.begin();
 	printVector();
-	while (dvec.size() > 3)
-		createPair();
+	tmp = it2 + 1;
+	it2 = dvec.begin();
+	insertion(it2);
 }
+
+void	PmergeMe::insertion(dvector::iterator it)
+{
+	createPair();
+	if (dvec.size() > 3 && (it->size() == (it + 1)->size()))
+			insertion(it);
+}
+
 
 // __ Asignement Operator ______________________________________________________
 // =============================================================================

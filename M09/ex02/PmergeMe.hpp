@@ -6,7 +6,7 @@
 /*   By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 01:11:57 by ayakoubi          #+#    #+#             */
-/*   Updated: 2024/01/08 16:50:04 by ayakoubi         ###   ########.fr       */
+/*   Updated: 2024/01/09 13:14:50 by ayakoubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ class PmergeMe
 		void	fillDVector(std::vector<int>::iterator it);
 		void	createPair();
 		void	printVector();
+		void	insertion(dvector::iterator it);
 };
 
 #endif
