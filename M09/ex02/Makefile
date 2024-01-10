@@ -6,7 +6,7 @@
 #    By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/05 01:00:48 by ayakoubi          #+#    #+#              #
-#    Updated: 2024/01/05 18:45:25 by ayakoubi         ###   ########.fr        #
+#    Updated: 2024/01/10 11:47:38 by ayakoubi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,8 @@
 # ==============================================================================
 NAME		=	PmeregeMe	
 CPP			=	c++
-CPPFLAGS	=	-Wall -Wextra -Werror -std=c++98
+CPPFLAGS	=	-Wall -Wextra -Werror -std=c++98 #-g -fsanitize=address
+
 OBJDIR		=	objs
 SRC			:=	main MyException ParsingArg PmergeMe
 OBJ			:=	$(addprefix $(OBJDIR)/, $(addsuffix .o, $(SRC)))

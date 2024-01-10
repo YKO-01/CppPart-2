@@ -6,7 +6,7 @@
 /*   By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 18:42:39 by ayakoubi          #+#    #+#             */
-/*   Updated: 2024/01/09 13:19:19 by ayakoubi         ###   ########.fr       */
+/*   Updated: 2024/01/10 11:47:11 by ayakoubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ PmergeMe& PmergeMe::operator = (const PmergeMe& copy)
 {
 	this->vec = copy.vec;
 	this->dvec = copy.dvec;
-	this->main_chain = copy.main_chain;
+	this->mainChain = copy.mainChain;
 	return (*this);
 }
 
@@ -60,21 +60,97 @@ void	PmergeMe::initVectors()
 
 	fillDVector(it);
 	it = vec.begin();
-	printVector();
+	printVector(dvec);
 	tmp = it2 + 1;
 	it2 = dvec.begin();
 	insertion(it2);
+	while (it2 != dvec.end())
+	{
+		it = it2->begin();
+		while (it != it2->end())
+		{
+			vec.push_back(*it);
+			it++;
+		}
+		it2++;
+	}
+	print();
+	createMainChain();
+	createPendChain();
 }
 
 void	PmergeMe::insertion(dvector::iterator it)
 {
+
 	createPair();
 	if (dvec.size() > 3 && (it->size() == (it + 1)->size()))
 			insertion(it);
 }
 
 
-// __ Asignement Operator ______________________________________________________
+// __ Create Main Chain ________________________________________________________
+// =============================================================================
+void	PmergeMe::createMainChain()
+{
+	vector::iterator	it;
+	vector		tmp;
+	int	i;
+
+	it = vec.begin();
+	i = 0;
+	while (it != vec.end())
+	{
+		if (i == 0 || i % 2 == 1)
+		{
+			tmp.push_back(*it);
+			mainChain.push_back(tmp);
+			tmp.clear();
+		}
+		it++;
+		i++;
+	}
+	// print
+	printVector(mainChain);
+}
+
+// __ Create Pend Chain ________________________________________________________
+// =============================================================================
+void	PmergeMe::createPendChain()
+{
+	vector::iterator	it;
+	vector		tmp;
+	int		i;
+
+	i = 0;
+	it = vec.begin();
+	while (it != vec.end())
+	{
+		if (i > 0 && i % 2 == 0)
+		{
+			tmp.push_back(*it);
+			pendChain.push_back(make_pair(tmp, ++it));
+			tmp.clear();
+			i++;
+		}
+		if (it == vec.end())
+			break;
+		it++;
+		i++;
+	}
+	// print
+	pair_vector::iterator it2;
+	it2 = pendChain.begin();
+	while (it2 != pendChain.end())
+	{
+		it = it2->second;
+		std::cout << *(it2->first.begin()) << " " << *(it) << "|";
+		it2++;
+	}
+	std::cout << std::endl;
+
+}
+
+// __ create Pair ______________________________________________________________
 // =============================================================================
 void	PmergeMe::createPair()
 {
@@ -100,31 +176,48 @@ void	PmergeMe::createPair()
 		}
 		dit++;
 	}
-	printVector();
+	// print
+	printVector(dvec);
 }
 
-// __ Asignement Operator ______________________________________________________
+// __ Print Vector of Vector ___________________________________________________
 // =============================================================================
-void	PmergeMe::printVector()
+void	PmergeMe::printVector(dvector cont)
 {
 	vector::iterator it;
 	dvector::iterator dit;
 
 	std::cout << "====== Vector 2 ===========" << std::endl;
-	dit = dvec.begin();
-	while (dit != dvec.end())
+	dit = cont.begin();
+	while (dit != cont.end())
 	{
-		std::cout << "this vec" << std::endl;
+		std::cout << "|";
 		it = dit->begin();		
 		while (it != dit->end())
 		{
-			std::cout << *it << std::endl;
+			std::cout << " " << *it << " ";
 			it++;
 		}
 		dit++;
 	}
+	std::cout << std::endl;
 }
 
+// __ Print Vector _____________________________________________________________
+// =============================================================================
+void	PmergeMe::print()
+{
+	vector::iterator it;
+
+	std::cout << "====== Vector 1 ===========" << std::endl;
+	it = vec.begin();		
+	while (it != vec.end())
+	{
+		std::cout << *it << std::endl;
+		it++;
+	}
+}
+	
 
 // __ Fill DVector _____________________________________________________________
 // =============================================================================
