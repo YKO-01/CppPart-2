@@ -6,7 +6,7 @@
 /*   By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 18:42:39 by ayakoubi          #+#    #+#             */
-/*   Updated: 2024/01/10 11:47:11 by ayakoubi         ###   ########.fr       */
+/*   Updated: 2024/01/14 16:22:58 by ayakoubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,57 +55,85 @@ PmergeMe& PmergeMe::operator = (const PmergeMe& copy)
 void	PmergeMe::initVectors()
 {
 	std::vector<int>::iterator	it = vec.begin();
-	dvector::iterator it2;
-	dvector::iterator tmp;
 
 	fillDVector(it);
 	it = vec.begin();
 	printVector(dvec);
-	tmp = it2 + 1;
-	it2 = dvec.begin();
-	insertion(it2);
-	while (it2 != dvec.end())
-	{
-		it = it2->begin();
-		while (it != it2->end())
-		{
-			vec.push_back(*it);
-			it++;
-		}
-		it2++;
-	}
-	print();
+	insertion();
+	std::cout << "\n======= Main Chain =========";
+	mainChain.clear();
 	createMainChain();
+	std::cout << "\n======= Pend Chain =========" << std::endl;
+	pendChain.clear();
 	createPendChain();
 }
 
-void	PmergeMe::insertion(dvector::iterator it)
+
+int 	PmergeMe::getCountPair()
+{
+	dvector::iterator it;
+	int	count;
+
+	count = 0;
+	it = dvec.begin();
+	while (it != dvec.end())
+	{
+		if (it->size() == (it + 1)->size())
+			count++;
+		it++;
+	}
+	return (count);
+}
+
+void	PmergeMe::insertion()
 {
 
 	createPair();
-	if (dvec.size() > 3 && (it->size() == (it + 1)->size()))
-			insertion(it);
+	if (getCountPair() > 2)
+		insertion();
+	std::cout << "\n======= Main Chain =========";
+	mainChain.clear();
+	createMainChain();
+	std::cout << "\n======= Pend Chain =========" << std::endl;
+	pendChain.clear();
+	createPendChain();
+//	insertPendToMain();
+//	printVector(mainChain);
+	dvec.clear();
+	splitPair();
+	//printVector(dvec);
 }
 
+// __ Insert Pend to Main ______________________________________________________
+// =============================================================================
+void	PmergeMe::insertPendToMain()
+{
+	dvector::iterator	pos;
+	pair_vector::iterator it;
 
+	it = pendChain.begin();
+	while (it != pendChain.end())
+	{
+		pos = std::lower_bound(mainChain.begin(), mainChain.end(), *(it->first.begin()));
+		mainChain.insert(pos, mainChain.begin(), mainChain.end());
+		mainChain.erase(pos);
+		it++;
+	}
+
+}
 // __ Create Main Chain ________________________________________________________
 // =============================================================================
 void	PmergeMe::createMainChain()
 {
-	vector::iterator	it;
-	vector		tmp;
+	dvector::iterator	it;
 	int	i;
 
-	it = vec.begin();
+	it = dvec.begin();
 	i = 0;
-	while (it != vec.end())
+	while (it != dvec.end())
 	{
 		if (i == 0 || i % 2 == 1)
-		{
-			tmp.push_back(*it);
-			mainChain.push_back(tmp);
-			tmp.clear();
-		}
+			mainChain.push_back(*it);
 		it++;
 		i++;
 	}
@@ -117,36 +145,51 @@ void	PmergeMe::createMainChain()
 // =============================================================================
 void	PmergeMe::createPendChain()
 {
-	vector::iterator	it;
-	vector		tmp;
-	int		i;
+	dvector::iterator	dit;
+	pair_vector::iterator	pit;
+	dvector					tmp;
+	int i;
 
 	i = 0;
-	it = vec.begin();
-	while (it != vec.end())
+	dit = dvec.begin();
+	pit = pendChain.begin();
+	while (dit != dvec.end())
 	{
-		if (i > 0 && i % 2 == 0)
+		if ((i > 0 && i % 2 == 0) || (dit != dvec.end() - 1 && dit->size() != dvec.begin()->size()))
 		{
-			tmp.push_back(*it);
-			pendChain.push_back(make_pair(tmp, ++it));
+			tmp.push_back(*dit);
+			pendChain.push_back(make_pair(tmp, ++dit));
 			tmp.clear();
+			//pit++;
 			i++;
 		}
-		if (it == vec.end())
+		if (dit == dvec.end())
 			break;
-		it++;
+		dit++;
 		i++;
 	}
 	// print
 	pair_vector::iterator it2;
 	it2 = pendChain.begin();
+	vector::iterator it;
 	while (it2 != pendChain.end())
 	{
-		it = it2->second;
-		std::cout << *(it2->first.begin()) << " " << *(it) << "|";
+		std::cout << "|(";
+		dit = it2->first.begin();
+		while (dit != it2->first.end())
+		{
+			it = dit->begin();
+			while (it != dit->end())
+			{
+				std::cout << *(it) << " ";
+				it++;
+			}
+			dit++;
+		}
+		std::cout << ", " << *(it2->second->begin()) << ")";
 		it2++;
 	}
-	std::cout << std::endl;
+	std::cout << "|" << std::endl;
 
 }
 
@@ -180,6 +223,53 @@ void	PmergeMe::createPair()
 	printVector(dvec);
 }
 
+// __ Split Pair _______________________________________________________________
+// =============================================================================
+void	PmergeMe::splitPair()
+{
+	dvector::iterator	mit;
+	vector				tmp;
+	vector::iterator	it;
+	size_t				i;
+	int var;
+
+	mit = mainChain.begin();
+	while (mit != mainChain.end())
+	{
+		i = -1;
+		var = 1;
+		it = mit->begin();
+		if (!(mit->size() % 2))
+			var = 0;
+		while (++i < (mit->size() / 2) + var)
+		{
+			tmp.push_back(*it);
+			it++;
+		}
+		dvec.push_back(tmp);
+		tmp.clear();
+		while (it != mit->end())
+		{
+			tmp.push_back(*it);
+			it++;
+		}
+		dvec.push_back(tmp);
+		tmp.clear();
+		mit++;
+	}
+}
+
+
+
+/*
+// __ Copy Main Choin __________________________________________________________
+// =============================================================================
+void	PmergeMe::copyMainChain()
+{
+	dvector::iterator it;
+
+	it = mainCain.begin();
+*/
 // __ Print Vector of Vector ___________________________________________________
 // =============================================================================
 void	PmergeMe::printVector(dvector cont)
@@ -213,9 +303,10 @@ void	PmergeMe::print()
 	it = vec.begin();		
 	while (it != vec.end())
 	{
-		std::cout << *it << std::endl;
+		std::cout << *it << " ";
 		it++;
 	}
+	std::cout << std::endl;
 }
 	
 
