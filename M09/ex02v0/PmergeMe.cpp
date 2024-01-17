@@ -6,7 +6,7 @@
 /*   By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 18:42:39 by ayakoubi          #+#    #+#             */
-/*   Updated: 2024/01/17 16:05:29 by ayakoubi         ###   ########.fr       */
+/*   Updated: 2024/01/17 20:21:25 by ayakoubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,12 +60,6 @@ void	PmergeMe::initVectors()
 	it = vec.begin();
 //	printVector(dvec);
 	insertion();
-//	std::cout << "\n======= Main Chain =========";
-//	mainChain.clear();
-//	createMainChain();
-//	std::cout << "\n======= Pend Chain =========" << std::endl;
-//	pendChain.clear();
-//	createPendChain();
 }
 
 
@@ -97,15 +91,21 @@ void	PmergeMe::insertion()
 	int var = 0;
 	if (getCountPair() > 2)
 		insertion();
+	reverseSort(tmp, &var);
+}
+
+void	PmergeMe::reverseSort(dvector tmp, int *var)
+{
 	dvec = tmp;
+	splitPair(mainChain);
 	if ((dvec.end() - 1)->size() != dvec.begin()->size())
 	{
 		tmp.clear();
 		tmp.push_back(*(dvec.end()));
 		dvec.pop_back();
-		var = 1;
+		*var = 1;
 	}
-	else if ((dvec.end() - 1)->size() == dvec.begin()->size() && var == 1)
+	else if((dvec.end() - 1)->size() == tmp.begin()->size() && *var == 1)
 		dvec.push_back(*(tmp.begin()));
 	std::cout << "\n=========== Vector of Vector =========" << std::endl; 
 	printVector(dvec);
@@ -118,9 +118,8 @@ void	PmergeMe::insertion()
 	insertPendToMain();
 	std::cout << "\n======= New Main Chain =========" << std::endl;
 	printVector(mainChain);
-	dvec.clear();
-	dvec = mainChain;
 }
+
 
 int	comp(const vector& main_chain, const vector& value)
 {
@@ -265,6 +264,11 @@ void	PmergeMe::splitPair(dvector dvect)
 	int var;
 
 	dit = dvect.begin();
+	if (dvect.size() != 0)
+		dvec.clear();
+	else
+		return ;
+	
 	while (dit != dvect.end())
 	{
 		i = -1;

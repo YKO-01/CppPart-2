@@ -6,7 +6,7 @@
 /*   By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 01:11:57 by ayakoubi          #+#    #+#             */
-/*   Updated: 2024/01/17 16:06:01 by ayakoubi         ###   ########.fr       */
+/*   Updated: 2024/01/17 20:16:53 by ayakoubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ class PmergeMe
 		void	splitPair(dvector fvect);
 		void	insertPendToMain();
 		void	sortPair();
+		void	reverseSort(dvector tmp, int *var);
 		void	print();
 };
 
