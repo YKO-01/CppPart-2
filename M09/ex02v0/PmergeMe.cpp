@@ -6,7 +6,7 @@
 /*   By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 18:42:39 by ayakoubi          #+#    #+#             */
-/*   Updated: 2024/01/17 20:21:25 by ayakoubi         ###   ########.fr       */
+/*   Updated: 2024/01/18 09:17:15 by ayakoubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,15 +83,49 @@ void	PmergeMe::insertion()
 {
 
 	dvector tmp;
-	createPair();
-	printVector(dvec);
-	sortPair();
-	printVector(dvec);
-	tmp = dvec;
 	int var = 0;
-	if (getCountPair() > 2)
-		insertion();
-	reverseSort(tmp, &var);
+	while (1)
+	{
+			createPair();
+			printVector(dvec);
+			sortPair();
+			printVector(dvec);
+			if (getCountPair() <= 2)
+				break;
+	}	
+	while (1)
+	{
+		
+		splitPair(mainChain);
+		if ((dvec.end() - 1)->size() != dvec.begin()->size())
+		{
+			
+			//tmp.push_back(*(dvec.end()));
+			tmp = dvec;
+			dvec.pop_back();
+			var = 1;
+			std::cout << *((tmp.end() - 1)->begin()) << std::endl;
+
+		}
+		else if((dvec.begin())->size() == (tmp.end() - 1)->size())
+			dvec.push_back(*(tmp.end() - 1));
+		//std::cout << *(tmp.begin()->begin()) << std::endl;
+		std::cout << "\n=========== Vector of Vector =========" << std::endl; 
+		printVector(dvec);
+		std::cout << "\n======= Main Chain =========" << std::endl;
+		mainChain.clear();
+		createMainChain();
+		std::cout << "\n======= Pend Chain =========" << std::endl;
+		pendChain.clear();
+		createPendChain();
+		insertPendToMain();
+		std::cout << "\n======= New Main Chain =========" << std::endl;
+		printVector(mainChain);
+		
+		if (mainChain.begin()->size() == 1)
+			return;
+	}
+	//reverseSort(tmp, &var);
 }
 
 void	PmergeMe::reverseSort(dvector tmp, int *var)
