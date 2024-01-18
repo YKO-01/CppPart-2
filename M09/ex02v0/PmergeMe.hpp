@@ -6,7 +6,7 @@
 /*   By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 01:11:57 by ayakoubi          #+#    #+#             */
-/*   Updated: 2024/01/17 20:16:53 by ayakoubi         ###   ########.fr       */
+/*   Updated: 2024/01/18 10:18:28 by ayakoubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ class PmergeMe
 		PmergeMe&	operator=(const PmergeMe& copy);
 		void	initVectors();
 		void	fillDVector(std::vector<int>::iterator it);
-		void	createPair();
+		void	createPair(dvector& dvect);
 		void	printVector(dvector);
 		void	insertion();
 		void	createMainChain();

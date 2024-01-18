@@ -6,7 +6,7 @@
 /*   By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 18:42:39 by ayakoubi          #+#    #+#             */
-/*   Updated: 2024/01/18 09:17:15 by ayakoubi         ###   ########.fr       */
+/*   Updated: 2024/01/18 11:44:02 by ayakoubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,9 @@ void	PmergeMe::initVectors()
 {
 	std::vector<int>::iterator	it = vec.begin();
 
-//	fillDVector(it);
 	it = vec.begin();
-//	printVector(dvec);
 	insertion();
+	printVector(dvec);
 }
 
 
@@ -83,49 +82,46 @@ void	PmergeMe::insertion()
 {
 
 	dvector tmp;
+	vector	_tmp;
 	int var = 0;
 	while (1)
 	{
-			createPair();
-			printVector(dvec);
+			createPair(dvec);
 			sortPair();
-			printVector(dvec);
 			if (getCountPair() <= 2)
 				break;
 	}	
 	while (1)
 	{
-		
 		splitPair(mainChain);
 		if ((dvec.end() - 1)->size() != dvec.begin()->size())
 		{
-			
-			//tmp.push_back(*(dvec.end()));
 			tmp = dvec;
 			dvec.pop_back();
 			var = 1;
-			std::cout << *((tmp.end() - 1)->begin()) << std::endl;
-
 		}
-		else if((dvec.begin())->size() == (tmp.end() - 1)->size())
+		else if(tmp.size() && (dvec.begin())->size() <= (tmp.end() - 1)->size() && var == 1)
+		{
 			dvec.push_back(*(tmp.end() - 1));
-		//std::cout << *(tmp.begin()->begin()) << std::endl;
-		std::cout << "\n=========== Vector of Vector =========" << std::endl; 
-		printVector(dvec);
-		std::cout << "\n======= Main Chain =========" << std::endl;
+			var = 0;
+			if ((dvec.end() - 1)->size() > dvec.begin()->size())
+			{
+				tmp.clear();
+				_tmp.push_back(*((dvec.end() - 1)->end() - 1));
+				tmp.push_back(_tmp);
+				(dvec.end() - 1)->pop_back();
+				var = 1;
+			}
+		}
 		mainChain.clear();
 		createMainChain();
-		std::cout << "\n======= Pend Chain =========" << std::endl;
 		pendChain.clear();
 		createPendChain();
 		insertPendToMain();
-		std::cout << "\n======= New Main Chain =========" << std::endl;
-		printVector(mainChain);
-		
+		dvec = mainChain;
 		if (mainChain.begin()->size() == 1)
 			return;
 	}
-	//reverseSort(tmp, &var);
 }
 
 void	PmergeMe::reverseSort(dvector tmp, int *var)
@@ -196,8 +192,6 @@ void	PmergeMe::createMainChain()
 		it++;
 		i++;
 	}
-	// print
-	printVector(mainChain);
 }
 
 // __ Create Pend Chain ________________________________________________________
@@ -227,64 +221,35 @@ void	PmergeMe::createPendChain()
 		dit++;
 		i++;
 	}
-	// print
-	pair_vector::iterator it2;
-	it2 = pendChain.begin();
-	vector::iterator it;
-	while (it2 != pendChain.end())
-	{
-		std::cout << "|(";
-		dit = it2->first.begin();
-		while (dit != it2->first.end())
-		{
-			it = dit->begin();
-			while (it != dit->end())
-			{
-				std::cout << *(it) << " ";
-				it++;
-			}
-			dit++;
-		}
-		std::cout << ", ";
-		it = it2->second->begin();
-		while (it != it2->second->end())
-			std::cout  << *(it++) << " ";
-		std::cout << ")";
-		it2++;
-	}
-	std::cout << "|" << std::endl;
-
 }
 
 // __ create Pair ______________________________________________________________
 // =============================================================================
-void	PmergeMe::createPair()
+void	PmergeMe::createPair(dvector& dvect)
 {
 	vector::iterator it;
 	dvector::iterator dit;
 	dvector::iterator tmp;
 	
 	it = vec.begin();
-	if (!dvec.size())
+	if (!dvect.size())
 	{
 		fillDVector(it);
 		return;
 	}
-	dit = dvec.begin();
-	while (dit != dvec.end())
+	dit = dvect.begin();
+	while (dit != dvect.end())
 	{
 		it = dit->begin();
-		if (dit != dvec.end() - 1)
+		if (dit != dvect.end() - 1)
 		{
 			tmp = dit + 1;
 			dit->insert(dit->end(), tmp->begin(), tmp->end());
 			tmp->erase(tmp->begin(), tmp->end());
-			dvec.erase(tmp);
+			dvect.erase(tmp);
 		}
 		dit++;
 	}
-	// print
-	//printVector(dvec);
 }
 
 // __ Split Pair _______________________________________________________________
