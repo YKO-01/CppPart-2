@@ -6,7 +6,7 @@
 /*   By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 18:42:39 by ayakoubi          #+#    #+#             */
-/*   Updated: 2024/01/22 11:06:30 by ayakoubi         ###   ########.fr       */
+/*   Updated: 2024/01/22 11:56:05 by ayakoubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,14 +55,25 @@ PmergeMe& PmergeMe::operator = (const PmergeMe& copy)
 
 // __ Asignement Operator ______________________________________________________
 // =============================================================================
-void	PmergeMe::initVectors()
+void	PmergeMe::sortVector()
 {
-	std::vector<int>::iterator	it = vec.begin();
-
-	it = vec.begin();
+	dvector::iterator dit;
+	std::cout << "before:\t";
+	print();
+	clock_t start = clock();	
 	insertion();
-	printVector(dvec);
+	clock_t end = clock();
+	double duration = static_cast<double>(end - start) * 1e6 / CLOCKS_PER_SEC;
+	dit = dvec.begin();	
+	while (dit != dvec.end())
+	{
+		vec.push_back(*(dit->begin()));
+		dit++;
+	}
+	std::cout << "after:\t";
+	print();
 	std::cout << comparasion << std::endl;
+	std::cout << "Time to process a range of " << vec.size() << "elements with std::[..] : " << duration << " us" << std::endl;
 }
 
 
@@ -261,9 +272,7 @@ void	PmergeMe::createPendChain()
 			pendChain.push_back(make_pair(tmp, ++mit));	
 			tmp.clear();
 			dit++;
-			i++;
-		//	if (mit != mainChain.end())
-		//		mit++;
+			i++;	
 		}
 		if (dit == dvec.end())
 			break;
@@ -401,16 +410,6 @@ void	PmergeMe::sortPair()
 	}
 }
 
-
-/*
-// __ Copy Main Choin __________________________________________________________
-// =============================================================================
-void	PmergeMe::copyMainChain()
-{
-	dvector::iterator it;
-
-	it = mainCain.begin();
-*/
 // __ Print Vector of Vector ___________________________________________________
 // =============================================================================
 void	PmergeMe::printVector(dvector cont)
@@ -440,7 +439,6 @@ void	PmergeMe::print()
 {
 	vector::iterator it;
 
-	std::cout << "====== Vector 1 ===========" << std::endl;
 	it = vec.begin();		
 	while (it != vec.end())
 	{
@@ -450,7 +448,6 @@ void	PmergeMe::print()
 	std::cout << std::endl;
 }
 	
-
 // __ Fill DVector _____________________________________________________________
 // =============================================================================
 void	PmergeMe::fillDVector(std::vector<int>::iterator it)

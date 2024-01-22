@@ -6,7 +6,7 @@
 /*   By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 01:11:57 by ayakoubi          #+#    #+#             */
-/*   Updated: 2024/01/22 10:32:16 by ayakoubi         ###   ########.fr       */
+/*   Updated: 2024/01/22 11:28:30 by ayakoubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 #include <utility>
 #include <vector>
 #include <algorithm>
+#include <chrono>
+#include <ctime>
 
 //extern int	comparasion;
 
@@ -38,7 +40,7 @@ class PmergeMe
 		PmergeMe(const PmergeMe& copy);
 		~PmergeMe();
 		PmergeMe&	operator=(const PmergeMe& copy);
-		void	initVectors();
+		void	sortVector();
 		void	fillDVector(std::vector<int>::iterator it);
 		void	createPair(dvector& dvect);
 		void	printVector(dvector cont);
