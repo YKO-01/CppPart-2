@@ -6,11 +6,13 @@
 /*   By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 18:42:39 by ayakoubi          #+#    #+#             */
-/*   Updated: 2024/01/20 14:52:54 by ayakoubi         ###   ########.fr       */
+/*   Updated: 2024/01/22 11:00:25 by ayakoubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PmergeMe.hpp"
+
+int comparasion = 0;
 
 // __ Constructurs _____________________________________________________________
 // =============================================================================
@@ -25,6 +27,7 @@ PmergeMe::PmergeMe(char **arg)
 	i = -1;
 	while (arg[++i])
 		vec.push_back(std::atoi(arg[i]));
+	comparasion = 0;
 }
 
 // __ Copy Constructure ________________________________________________________
@@ -59,6 +62,7 @@ void	PmergeMe::initVectors()
 	it = vec.begin();
 	insertion();
 	printVector(dvec);
+	std::cout << comparasion << std::endl;
 }
 
 
@@ -82,37 +86,23 @@ void	PmergeMe::insertion()
 {
 
 	dvector tmp;
-	vector	_tmp;
 	int var = 0;
 	while (1)
 	{
 			createPair(dvec);
 			sortPair();
+			std::cout << std::endl;
+			printVector(dvec);
 			if (getCountPair() <= 2)
 				break;
-	}	
+	}
+	std::cout << "\n\n\n\n";	
 	while (1)
 	{
 		splitPair(mainChain);
-		if ((dvec.end() - 1)->size() != dvec.begin()->size())
-		{
-			tmp = dvec;
-			dvec.pop_back();
-			var = 1;
-		}
-		else if(tmp.size() && (dvec.begin())->size() <= (tmp.end() - 1)->size() && var == 1)
-		{
-			dvec.push_back(*(tmp.end() - 1));
-			var = 0;
-			if ((dvec.end() - 1)->size() > dvec.begin()->size())
-			{
-				tmp.clear();
-				_tmp.push_back(*((dvec.end() - 1)->end() - 1));
-				tmp.push_back(_tmp);
-				(dvec.end() - 1)->pop_back();
-				var = 1;
-			}
-		}
+		stockRest(tmp, var);
+		std::cout << "\n=========== Vector of Vector =========" << std::endl; 
+		printVector(dvec);
 		std::cout << "\n======= Main Chain =========" << std::endl;
 		mainChain.clear();
 		createMainChain();
@@ -122,13 +112,47 @@ void	PmergeMe::insertion()
 		createPendChain();
 	//	printVector(pendChain);
 		insertPendToMain();
-		std::cout << "\n======= New Main Chain =========" << std::endl;
-		printVector(mainChain);
 		dvec = mainChain;
-		if (mainChain.begin()->size() == 1)
+		if (mainChain.begin()->size()  == 1)
 			return;
 	}
 }
+
+// __ Stock Rest _______________________________________________________________
+// =============================================================================
+void	PmergeMe::stockRest(dvector& tmp, int& var)
+{
+	vector	_tmp;
+	dvector::iterator _end;
+	dvector::iterator _begin;
+
+	_begin = dvec.begin();
+	_end = dvec.end() - 1;
+	if (_end->size() != _begin->size())
+	{
+		tmp.push_back(*_end);
+		dvec.pop_back();
+		var = 1;
+	}
+	else if(tmp.size() && _begin->size() <= tmp.begin()->size() && var == 1)
+	{
+		dvec.push_back(*(tmp.end() - 1));
+		var = 0;
+		_begin = dvec.begin();
+		_end = dvec.end() - 1;
+		if (_end->size() > _begin->size())
+		{
+			tmp.clear();
+			for (size_t i = _begin->size(); i < _end->size(); i++)
+			_tmp.push_back(*(_end->begin() + i));
+			tmp.push_back(_tmp);
+			for (size_t i = _end->size(); i > _begin->size(); --i)
+				_end->pop_back();
+			var = 1;
+		}
+	}
+}
+
 
 void	PmergeMe::reverseSort(dvector tmp, int *var)
 {
@@ -151,14 +175,13 @@ void	PmergeMe::reverseSort(dvector tmp, int *var)
 	std::cout << "\n======= Pend Chain =========" << std::endl;
 	pendChain.clear();
 	createPendChain();
-	insertPendToMain();
-	std::cout << "\n======= New Main Chain =========" << std::endl;
-	printVector(mainChain);
+	//insertPendToMain();
 }
 
 
 int	comp(const vector& main_chain, const vector& value)
 {
+	comparasion++;
 	return (main_chain.back() <= value.back());
 }
 
@@ -183,7 +206,6 @@ void	PmergeMe::insertPendToMain()
         1537228672809129216u, 3074457345618258432u, 6148914691236516864u
     };
 
-	it = pendChain.begin();
 	int i;
 	uint_least64_t dist;
 	i = 0;
@@ -194,13 +216,22 @@ void	PmergeMe::insertPendToMain()
 		if (dist >= pendChain.size())
 			it = pendChain.end() - 1;
 		else
-			std::advance(it, dist);
+		{
+			for (uint_least64_t	j = 0; j < dist ; j++)
+				it++;
+		}
 		while (1)
 		{
-			pos = std::lower_bound(mainChain.begin(), mainChain.end(), it->first.front(), comp);
+			if (it->second == mainChain.end())
+				std::cout << &it->second->front() << std::endl;
+		//	if (it == pendChain.end() - 1)
+		//		it->second = mainChain.end();
+			pos = std::lower_bound(mainChain.begin(), it->second, it->first.front(), comp);	
 			mainChain.insert(pos, *(it->first.begin()));
-			it = pendChain.erase(it);
-		//	updateIterator(it, i);
+			pendChain.erase(it);
+			updateIterator(pos);
+			std::cout << "\n======= new Main Chain =========" << std::endl;
+			printVector(mainChain);
 			if (it == pendChain.begin())
 				break;
 			--it;
@@ -209,12 +240,32 @@ void	PmergeMe::insertPendToMain()
 	}
 
 }
+
+// __ Update Iterator __________________________________________________________
+// =============================================================================
+
+void	PmergeMe::updateIterator(dvector::iterator& it)
+{
+	pair_vector::iterator mit = pendChain.begin();
+	while (mit != pendChain.end())
+	{
+		if (*(mit->second) > *it)
+			*mit->second++;
+	//	if (mit == pendChain.end())
+	//		break;
+		mit++;
+	}
+}
+
 // __ Create Main Chain ________________________________________________________
 // =============================================================================
 void	PmergeMe::createMainChain()
 {
 	dvector::iterator	it;
 	int	i;
+
+
+	mainChain.reserve(dvec.size());
 
 	it = dvec.begin();
 	i = 0;
@@ -232,6 +283,7 @@ void	PmergeMe::createMainChain()
 void	PmergeMe::createPendChain()
 {
 	dvector::iterator	dit;
+	dvector::iterator	mit;
 	pair_vector::iterator	pit;
 	dvector					tmp;
 	int i;
@@ -239,21 +291,58 @@ void	PmergeMe::createPendChain()
 	i = 0;
 	dit = dvec.begin();
 	pit = pendChain.begin();
+	mit = mainChain.begin() + 1;
 	while (dit != dvec.end())
 	{
 		if ((i > 0 && i % 2 == 0) || (dit != dvec.end() - 1 && dit->size() != dvec.begin()->size()))
 		{
 			tmp.push_back(*dit);
-			pendChain.push_back(make_pair(tmp, ++dit));
+			pendChain.push_back(make_pair(tmp, ++mit));	
 			tmp.clear();
-			//pit++;
+			dit++;
 			i++;
+		//	if (mit != mainChain.end())
+		//		mit++;
 		}
 		if (dit == dvec.end())
 			break;
 		dit++;
 		i++;
 	}
+	printPend();
+}
+
+
+void	PmergeMe::printPend()
+{
+	// print
+	
+	dvector::iterator	dit;
+	pair_vector::iterator it2;
+	it2 = pendChain.begin();
+	vector::iterator it;
+	while (it2 != pendChain.end())
+	{
+		std::cout << "|(";
+		dit = it2->first.begin();
+		while (dit != it2->first.end())
+		{
+			it = dit->begin();
+			while (it != dit->end())
+			{
+				std::cout << *(it) << " ";
+				it++;
+			}
+			dit++;
+		}
+		std::cout << ", ";
+		it = it2->second->begin();
+		while (it2->second != mainChain.end() && it != it2->second->end())
+			std::cout  << *(it++) << " ";
+		std::cout << ")";
+		it2++;
+	}
+	std::cout << "|" << std::endl;
 }
 
 // __ create Pair ______________________________________________________________
@@ -339,8 +428,11 @@ void	PmergeMe::sortPair()
 		if (dit != dvec.end() - 1)
 		{
 			tmp = dit + 1;
-			if (dit->back() >= tmp->back())
+			if (dit->size() == tmp->size() && dit->back() >= tmp->back())
+			{
+				comparasion++;
 				dit->swap(*(tmp));
+			}
 			dit++;
 		}
 		if (dit == dvec.end())

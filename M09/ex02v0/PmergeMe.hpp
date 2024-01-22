@@ -6,7 +6,7 @@
 /*   By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 01:11:57 by ayakoubi          #+#    #+#             */
-/*   Updated: 2024/01/20 13:24:54 by ayakoubi         ###   ########.fr       */
+/*   Updated: 2024/01/22 10:32:16 by ayakoubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 #include <utility>
 #include <vector>
 #include <algorithm>
+
+//extern int	comparasion;
 
 typedef	std::vector<int>	vector;
 typedef std::vector<vector>	dvector;
@@ -46,9 +48,13 @@ class PmergeMe
 		int		getCountPair();
 		void	splitPair(dvector fvect);
 		void	insertPendToMain();
+		void	updateIterator(dvector::iterator& it);
 		void	sortPair();
 		void	reverseSort(dvector tmp, int *var);
 		void	print();
+		void	printPend();
+		void	stockRest(dvector&tmp, int& var);
+		//int		comp(const vector& main_chain, const vector& value);
 };
 
 #endif
