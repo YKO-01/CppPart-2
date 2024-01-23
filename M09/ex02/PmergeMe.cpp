@@ -6,7 +6,7 @@
 /*   By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 18:42:39 by ayakoubi          #+#    #+#             */
-/*   Updated: 2024/01/14 16:22:58 by ayakoubi         ###   ########.fr       */
+/*   Updated: 2024/01/16 17:05:41 by ayakoubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,8 @@ void	PmergeMe::initVectors()
 	mainChain.clear();
 	createMainChain();
 	std::cout << "\n======= Pend Chain =========" << std::endl;
-	pendChain.clear();
-	createPendChain();
+//	pendChain.clear();
+//	createPendChain();
 }
 
 
@@ -95,8 +95,8 @@ void	PmergeMe::insertion()
 	mainChain.clear();
 	createMainChain();
 	std::cout << "\n======= Pend Chain =========" << std::endl;
-	pendChain.clear();
-	createPendChain();
+//	pendChain.clear();
+//	createPendChain();
 //	insertPendToMain();
 //	printVector(mainChain);
 	dvec.clear();

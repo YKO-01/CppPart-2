@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+         #
+#    By: ayakoubi <ayakoubi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/05 01:00:48 by ayakoubi          #+#    #+#              #
-#    Updated: 2024/01/11 23:16:02 by ayakoubi         ###   ########.fr        #
+#    Updated: 2024/01/23 12:32:59 by ayakoubi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ CPP			=	c++
 CPPFLAGS	=	-Wall -Wextra -Werror -std=c++98 #-g -fsanitize=address
 
 OBJDIR		=	objs
-SRC			:=	main MyException ParsingArg PmergeMe
+SRC			:=	main MyException ParsingArg SVector List
 OBJ			:=	$(addprefix $(OBJDIR)/, $(addsuffix .o, $(SRC)))
 SRC			:=	$(addsuffix .cpp, $(SRC))
 
