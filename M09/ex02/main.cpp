@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ayakoubi <ayakoubi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 01:11:03 by ayakoubi          #+#    #+#             */
-/*   Updated: 2024/01/08 20:48:59 by ayakoubi         ###   ########.fr       */
+/*   Updated: 2024/01/24 09:48:10 by ayakoubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,7 @@ int main(int ac, char **av)
 		ParsingArg parg;
 		parg.validArgument(&av[1]);
 		PmergeMe pm(&av[1]);
-		pm.initVectors();
-		return (0);
+		pm.sortNumbers();
 	}
 	catch (std::exception& e)
 	{
