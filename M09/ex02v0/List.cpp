@@ -6,7 +6,7 @@
 /*   By: ayakoubi <ayakoubi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 08:56:27 by ayakoubi          #+#    #+#             */
-/*   Updated: 2024/01/23 15:51:15 by ayakoubi         ###   ########.fr       */
+/*   Updated: 2024/01/24 11:03:02 by ayakoubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,7 +171,6 @@ int	comp(const list& main_chain, const list& value)
 	return (main_chain.back() <= value.back());
 }
 
-
 // __ Insert Pend to Main ______________________________________________________
 // =============================================================================
 void	List::insertPendToMainList()
@@ -221,29 +220,12 @@ void	List::insertPendToMainList()
 
 }
 
-// __ Update Iterator __________________________________________________________
-// =============================================================================
-
-void	List::updateIterator(dlist::iterator& it)
-{
-	pair_list::iterator mit = pendChain.begin();
-	while (mit != pendChain.end())
-	{
-		if (*(mit->second) > *it)
-			*mit->second++;
-		mit++;
-	}
-}
-
 // __ Create Main Chain ________________________________________________________
 // =============================================================================
 void	List::createMainChainList()
 {
 	dlist::iterator	it;
 	int	i;
-
-
-	//mainChain.reserve(_dlist.size());
 
 	it = _dlist.begin();
 	i = 0;
@@ -289,39 +271,6 @@ void	List::createPendChainList()
 	}
 }
 
-
-void	List::printPendList()
-{
-	// print
-	
-	dlist::iterator	dit;
-	pair_list::iterator it2;
-	it2 = pendChain.begin();
-	list::iterator it;
-	while (it2 != pendChain.end())
-	{
-		std::cout << "|(";
-		dit = it2->first.begin();
-		while (dit != it2->first.end())
-		{
-			it = dit->begin();
-			while (it != dit->end())
-			{
-				std::cout << *(it) << " ";
-				it++;
-			}
-			dit++;
-		}
-		std::cout << ", ";
-		it = it2->second->begin();
-		while (it2->second != mainChain.end() && it != it2->second->end())
-			std::cout  << *(it++) << " ";
-		std::cout << ")";
-		it2++;
-	}
-	std::cout << "|" << std::endl;
-}
-
 // __ create Pair ______________________________________________________________
 // =============================================================================
 void	List::createPair(dlist& dlistt)
@@ -351,6 +300,21 @@ void	List::createPair(dlist& dlistt)
 		}
 		dit++;
 	}
+}
+
+// __ Fill Dlist _______________________________________________________________
+// =============================================================================
+void	List::fillDlist(std::list<int>::iterator it)
+{
+	list tmp;
+	list::iterator _end;
+	tmp.push_back(*it);
+	_dlist.push_back(tmp);
+	_end = _list.end();
+	_end--;
+	if (it != _end)
+		fillDlist(++it);
+	_list.pop_back();
 }
 
 // __ Split Pair _______________________________________________________________
@@ -420,29 +384,6 @@ void	List::sortPairList()
 	}
 }
 
-// __ Print list of list ___________________________________________________
-// =============================================================================
-void	List::printlist(dlist cont)
-{
-	list::iterator it;
-	dlist::iterator dit;
-
-//	std::cout << "====== list 2 ===========" << std::endl;
-	dit = cont.begin();
-	while (dit != cont.end())
-	{
-		std::cout << "|";
-		it = dit->begin();		
-		while (it != dit->end())
-		{
-			std::cout << " " << *it << " ";
-			it++;
-		}
-		dit++;
-	}
-	std::cout << std::endl;
-}
-
 // __ Print list _____________________________________________________________
 // =============================================================================
 void	List::printList()
@@ -458,21 +399,6 @@ void	List::printList()
 	std::cout << std::endl;
 }
 	
-// __ Fill Dlist _______________________________________________________________
-// =============================================================================
-void	List::fillDlist(std::list<int>::iterator it)
-{
-	list tmp;
-	list::iterator _end;
-	tmp.push_back(*it);
-	_dlist.push_back(tmp);
-	_end = _list.end();
-	_end--;
-	if (it != _end)
-		fillDlist(++it);
-	_list.pop_back();
-}
-
 // __ Advance Iterator _________________________________________________________
 // =============================================================================
 dlist::iterator	List::advanceIterator(dlist& doubleList, dlist::iterator it, int index)

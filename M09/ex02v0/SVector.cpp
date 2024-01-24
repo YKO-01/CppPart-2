@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sVector.cpp                                        :+:      :+:    :+:   */
+/*   SVector.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ayakoubi <ayakoubi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 09:00:23 by ayakoubi          #+#    #+#             */
-/*   Updated: 2024/01/23 09:33:50 by ayakoubi         ###   ########.fr       */
+/*   Updated: 2024/01/24 10:57:09 by ayakoubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,6 @@ void	SVector::sortVector()
 	std::cout << comparasion << std::endl;
 	std::cout << "Time to process a range of " << vec.size() << "elements with std::[..] : " << duration << " us" << std::endl;
 }
-
 
 int 	SVector::getCountPair()
 {
@@ -202,7 +201,7 @@ void	SVector::insertPendToMain()
 		}
 		while (1)
 		{
-			pos = std::lower_bound(mainChain.begin(), it->second, it->first.front(), comp);	
+			pos = std::lower_bound(mainChain.begin(), it->second, it->first.front(), comp);
 			mainChain.insert(pos, *(it->first.begin()));
 			pendChain.erase(it);
 			updateIterator(pos);
@@ -218,12 +217,12 @@ void	SVector::insertPendToMain()
 // __ Update Iterator __________________________________________________________
 // =============================================================================
 
-void	SVector::updateIterator(dvector::iterator& it)
+void	SVector::updateIterator(dvector::iterator it)
 {
 	pair_vector::iterator mit = pendChain.begin();
 	while (mit != pendChain.end())
 	{
-		if (*(mit->second) > *it)
+		if (*(mit->second) >= *it)
 			*mit->second++;
 		mit++;
 	}
@@ -281,39 +280,6 @@ void	SVector::createPendChain()
 	}
 }
 
-
-void	SVector::printPend()
-{
-	// print
-	
-	dvector::iterator	dit;
-	pair_vector::iterator it2;
-	it2 = pendChain.begin();
-	vector::iterator it;
-	while (it2 != pendChain.end())
-	{
-		std::cout << "|(";
-		dit = it2->first.begin();
-		while (dit != it2->first.end())
-		{
-			it = dit->begin();
-			while (it != dit->end())
-			{
-				std::cout << *(it) << " ";
-				it++;
-			}
-			dit++;
-		}
-		std::cout << ", ";
-		it = it2->second->begin();
-		while (it2->second != mainChain.end() && it != it2->second->end())
-			std::cout  << *(it++) << " ";
-		std::cout << ")";
-		it2++;
-	}
-	std::cout << "|" << std::endl;
-}
-
 // __ create Pair ______________________________________________________________
 // =============================================================================
 void	SVector::createPair(dvector& dvect)
@@ -341,6 +307,18 @@ void	SVector::createPair(dvector& dvect)
 		}
 		dit++;
 	}
+}
+
+// __ Fill DVector _____________________________________________________________
+// =============================================================================
+void	SVector::fillDVector(std::vector<int>::iterator it)
+{
+	std::vector<int> tmp;
+	tmp.push_back(*it);
+	dvec.push_back(tmp);
+	if (it != vec.end() - 1)
+		fillDVector(++it);
+	vec.pop_back();
 }
 
 // __ Split Pair _______________________________________________________________
@@ -410,29 +388,6 @@ void	SVector::sortPair()
 	}
 }
 
-// __ Print Vector of Vector ___________________________________________________
-// =============================================================================
-void	SVector::printVector(dvector cont)
-{
-	vector::iterator it;
-	dvector::iterator dit;
-
-//	std::cout << "====== Vector 2 ===========" << std::endl;
-	dit = cont.begin();
-	while (dit != cont.end())
-	{
-		std::cout << "|";
-		it = dit->begin();		
-		while (it != dit->end())
-		{
-			std::cout << " " << *it << " ";
-			it++;
-		}
-		dit++;
-	}
-	std::cout << std::endl;
-}
-
 // __ Print Vector _____________________________________________________________
 // =============================================================================
 void	SVector::print()
@@ -447,16 +402,3 @@ void	SVector::print()
 	}
 	std::cout << std::endl;
 }
-	
-// __ Fill DVector _____________________________________________________________
-// =============================================================================
-void	SVector::fillDVector(std::vector<int>::iterator it)
-{
-	std::vector<int> tmp;
-	tmp.push_back(*it);
-	dvec.push_back(tmp);
-	if (it != vec.end() - 1)
-		fillDVector(++it);
-	vec.pop_back();
-}
-

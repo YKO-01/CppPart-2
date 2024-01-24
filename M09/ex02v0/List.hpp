@@ -6,7 +6,7 @@
 /*   By: ayakoubi <ayakoubi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 08:53:28 by ayakoubi          #+#    #+#             */
-/*   Updated: 2024/01/23 12:28:33 by ayakoubi         ###   ########.fr       */
+/*   Updated: 2024/01/24 11:03:00 by ayakoubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,22 +43,18 @@ class List
 		void	sortlist();
 		void	fillDlist(std::list<int>::iterator it);
 		void	createPair(dlist& dvect);
-		void	printlist(dlist cont);
 		void	insertionList();
 		void	createMainChainList();
 		void	createPendChainList();
 		int		getCountPairList();
 		void	splitPair(dlist fvect);
 		void	insertPendToMainList();
-		void	updateIterator(dlist::iterator& it);
 		void	sortPairList();
 		void	reverseSort(dlist tmp, int *var);
 		void	printList();
-		void	printPendList();
 		void	stockRest(dlist&tmp, int& var);
 		dlist::iterator advanceIterator(dlist& doubleList, dlist::iterator it, int index);
 		list::iterator	miniAdvance(list& lst, list::iterator it, int index);
-		//int		comp(const list& main_chain, const list& value);
 };
 
 #endif
