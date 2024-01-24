@@ -6,7 +6,7 @@
 /*   By: ayakoubi <ayakoubi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 08:53:28 by ayakoubi          #+#    #+#             */
-/*   Updated: 2024/01/24 11:03:00 by ayakoubi         ###   ########.fr       */
+/*   Updated: 2024/01/24 11:28:03 by ayakoubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 #define LIST_HPP
 
 #include <iostream>
-#include "MyException.hpp"
-#include <utility>
 #include <list>
 #include <algorithm>
 #include <chrono>

@@ -6,7 +6,7 @@
 /*   By: ayakoubi <ayakoubi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 08:57:38 by ayakoubi          #+#    #+#             */
-/*   Updated: 2024/01/24 11:00:00 by ayakoubi         ###   ########.fr       */
+/*   Updated: 2024/01/24 11:27:36 by ayakoubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 #define	VECTOR_HPP
 
 #include <iostream>
-#include "MyException.hpp"
-#include <utility>
 #include <vector>
 #include <algorithm>
 #include <chrono>

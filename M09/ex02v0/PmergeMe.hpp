@@ -6,7 +6,7 @@
 /*   By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 01:11:57 by ayakoubi          #+#    #+#             */
-/*   Updated: 2024/01/24 10:05:04 by ayakoubi         ###   ########.fr       */
+/*   Updated: 2024/01/24 11:28:44 by ayakoubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,7 @@
 #define PMERGEME_HPP
 
 #include <iostream>
-#include "MyException.hpp"
-#include <utility>
-#include <vector>
-#include <algorithm>
-#include <chrono>
-#include <ctime>
 
-//extern int	comparasion;
 #include "SVector.hpp"
 #include "List.hpp"
 
