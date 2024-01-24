@@ -6,13 +6,12 @@
 /*   By: ayakoubi <ayakoubi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 01:11:03 by ayakoubi          #+#    #+#             */
-/*   Updated: 2024/01/23 12:36:43 by ayakoubi         ###   ########.fr       */
+/*   Updated: 2024/01/24 09:48:10 by ayakoubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ParsingArg.hpp"
-#include "SVector.hpp"
-#include "List.hpp"
+#include "PmergeMe.hpp"
 
 int main(int ac, char **av)
 {
@@ -22,10 +21,8 @@ int main(int ac, char **av)
 	{
 		ParsingArg parg;
 		parg.validArgument(&av[1]);
-		//SVector pm(&av[1]);
-		List lp(&av[1]);
-		//pm.sortVector();
-		lp.sortlist();
+		PmergeMe pm(&av[1]);
+		pm.sortNumbers();
 	}
 	catch (std::exception& e)
 	{
