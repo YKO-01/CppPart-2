@@ -6,7 +6,7 @@
 /*   By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 13:18:21 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/12/27 15:41:37 by ayakoubi         ###   ########.fr       */
+/*   Updated: 2024/02/22 17:02:57 by ayakoubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,10 +90,6 @@ void	ParsingArg::checkMatters(std::string arg)
 				throw MyException("error");
 			start = i + 1;
 		}
-	/*	if (isdigit(arg[i]))
-			arr.push_back(std::atoi(&arg[i]));
-		else if (isoperator(arg[i]))
-			arr.push_back(isoperator(arg[i]));*/
 	}
 }
 

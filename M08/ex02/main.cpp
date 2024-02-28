@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ayakoubi <ayakoubi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/11 15:23:02 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/12/11 15:59:23 by ayakoubi         ###   ########.fr       */
+/*   Updated: 2024/01/27 09:03:30 by ayakoubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int main(void)
 	//[...]
 	mstack.push(0);
 	MutantStack<int>::iterator it = mstack.begin();
-	MutantStack<int>::iterator ite = mstack.end();
+	const MutantStack<int>::iterator ite = mstack.end();
 	++it;
 	--it;
 	while (it != ite)

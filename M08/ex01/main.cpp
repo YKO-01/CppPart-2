@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ayakoubi <ayakoubi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/07 20:51:25 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/12/10 11:51:00 by ayakoubi         ###   ########.fr       */
+/*   Updated: 2024/01/27 09:06:22 by ayakoubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,16 @@
 #include <unistd.h>
 int main()
 {
-	Span sp(10000);
-	int i;
-	i = -1;
-	srand(time(NULL));
-	while (++i < 10000)
-		sp.addNumber(rand());
+	Span sp = Span(5);
+
+	sp.addNumber(6);
+	sp.addNumber(3);
+	sp.addNumber(17);
+	sp.addNumber(9);
+	sp.addNumber(11);
+
 	std::cout << sp.shortestSpan() << std::endl;
 	std::cout << sp.longestSpan() << std::endl;
+
 	return (0);
 }

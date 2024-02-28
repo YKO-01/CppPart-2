@@ -6,7 +6,7 @@
 /*   By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/18 19:32:30 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/12/28 15:15:56 by ayakoubi         ###   ########.fr       */
+/*   Updated: 2023/12/25 09:26:32 by ayakoubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ Serializer&	Serializer::operator=(const Serializer& copy)
 // __ Serialize ________________________________________________________________
 // =============================================================================
 uintptr_t	Serializer::serialize(Data* ptr)
-{	
+{
 	return (reinterpret_cast<uintptr_t>(ptr));
 }
 

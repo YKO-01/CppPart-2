@@ -6,7 +6,7 @@
 /*   By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/01 01:42:25 by ayakoubi          #+#    #+#             */
-/*   Updated: 2024/01/05 00:53:57 by ayakoubi         ###   ########.fr       */
+/*   Updated: 2024/02/25 04:28:19 by ayakoubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,11 @@ int	RPN::getValue(char c, int first, int second)
 	if (c == '-')
 		return (first - second);
 	if (c == '/')
+	{
+		if (second == 0)
+			throw MyException("you can't divide by 0"); 
 		return (first / second);
+	}
 	return (first * second);
 }
 
@@ -80,7 +84,11 @@ void	RPN::calculate(char *str, int *ret)
 	while (*str && (*str == ' '))
 		str++;
 	if (getOperator(*str) >= 0)
+	{
+		if (arr.size() < 2)
+			throw MyException("Error");
 		s = getOperator(*str++);
+	}
 	while (arr.size() && ++len < 2)
 	{
 		nbr[len] = arr.back();

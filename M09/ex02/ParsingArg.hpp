@@ -6,7 +6,7 @@
 /*   By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/26 13:07:53 by ayakoubi          #+#    #+#             */
-/*   Updated: 2024/01/24 11:07:48 by ayakoubi         ###   ########.fr       */
+/*   Updated: 2024/02/18 09:45:18 by ayakoubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,6 @@ class ParsingArg
 		~ParsingArg();
 
 		void	validArgument(char **arg);
-		void	scanArgument(char **arg);
-		int		isoperator(char c);
 
 };
 

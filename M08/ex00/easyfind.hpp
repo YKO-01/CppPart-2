@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   easyfind.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ayakoubi <ayakoubi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 11:14:32 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/12/08 19:09:56 by ayakoubi         ###   ########.fr       */
+/*   Updated: 2024/01/25 20:29:21 by ayakoubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,11 @@
 
 #include <iostream>
 #include <vector>
+#include <algorithm>
 
 template <typename T>
-T	easyfind(std::vector<T>first, int second);
+typename T::iterator easyfind(T& arr, int found);
+
 
 #include "easyfind.tpp"
 

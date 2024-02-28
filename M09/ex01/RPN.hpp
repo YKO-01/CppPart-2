@@ -6,7 +6,7 @@
 /*   By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/31 15:16:28 by ayakoubi          #+#    #+#             */
-/*   Updated: 2024/01/05 00:52:46 by ayakoubi         ###   ########.fr       */
+/*   Updated: 2024/02/25 01:16:36 by ayakoubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 #include <iostream>
 #include <deque>
-
+#include "MyException.hpp"
 class RPN
 {
 	private:

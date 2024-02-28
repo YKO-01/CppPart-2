@@ -6,7 +6,7 @@
 /*   By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/22 17:01:36 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/12/25 12:29:26 by ayakoubi         ###   ########.fr       */
+/*   Updated: 2024/02/25 22:19:41 by ayakoubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,46 +24,21 @@ ParsingFile::~ParsingFile()
 {
 }
 
-// __ checkLine() ______________________________________________________________
-// =============================================================================
-void	ParsingFile::parsingLine(std::string line) 
+void	ParsingFile::getDateAndBtc(std::string line, std::string &date, std::string &btc)
 {
-	char *str[3];
-	char *date[4];
+	size_t pos;
 
-	int i;
-	int j;
-	i = -1;
-	j = 0;
-	splitLine(line, i, j, str, '|');
-	str[2] = NULL;
-	splitLine(str[0], i, j, date, '-');
-	date[3] = NULL;
-	i = -1;
-	while (date[++i])
-		std::cout << date[i] << std::endl;
-}
-
-// __ splitLine() ______________________________________________________________
-// =============================================================================
-void	ParsingFile::splitLine(std::string line, int i, int j, char **str, char c)
-{
-	int size;
-	int k;
-	int count;
-	int len;
-
-	size = static_cast<int>(line.length());
-	count = i;
-	count++;
-	while (++i < size && line[i] != c);
-	len = i - count;
-	str[j] = new char[len];
-	k = -1;
-	while (++k < len)
-		str[j][k] = line[count++];
-	if (i < size)
-		splitLine(line, i, ++j, str, c);
+	pos = line.find("|");
+	if (pos != std::string::npos)
+	{
+		date = line.substr(0, pos);
+		btc = line.substr(pos);
+	}
+	else
+	{
+		date = line;
+		btc = "";
+	}
 }
 
 // __ handlingErrors() _________________________________________________________
@@ -98,6 +73,10 @@ bool	ParsingFile::validFormat(std::string str, std::string format)
 	return (str == format);
 }
 
+bool isLeapYear(int year)
+{
+    return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
+}
 // __ checkValues() ____________________________________________________________
 // =============================================================================
 void	ParsingFile::checkValues(std::string line, t_data *data)
@@ -112,11 +91,13 @@ void	ParsingFile::checkValues(std::string line, t_data *data)
 		throw MyException("bad input => " + line);
 	if (data->month > 7 && data->month % 2 && data->day > 30)
 		throw MyException("bad input => " + line);
-	if (data->month == 2 && data->day > 28)
+	int leap = isLeapYear(data->year) ? 29 : 28;
+	if (data->month == 2 && data->day > leap)
 		throw MyException("bad input => " + line);
 	if (data->btc < 0)
 		throw MyException("not a positive number.");
 	if (data->btc > 1000)
 		throw MyException("too large number.");
 }
+
 

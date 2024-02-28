@@ -6,7 +6,7 @@
 /*   By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 11:44:04 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/12/26 11:12:07 by ayakoubi         ###   ########.fr       */
+/*   Updated: 2024/02/26 18:50:54 by ayakoubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,22 +24,26 @@ void	readFile(std::ifstream& file, BitcoinExchange btcEx)
 
 	std::getline(file, line); 
 	if (!pfile.validFormat(line, "date | value"))
-		throw MyException("bad input => " + line);
-	while (std::getline(file, date, '|') && std::getline(file, btc))
+		std::cout << "invalid head: " << line  << std::endl << "The correct Head : date | value " << std::endl;
+	while (std::getline(file, line))
 	{
-		line = date + "|" + btc;
-		try
+		if (line.empty())
+			std::cerr << "Error: bad input => " << std::endl;
+		else
 		{
-			pfile.handlingErrors(line, &data);
-	   		pfile.checkValues(line, &data);
-			date.erase(date.length() - 1);
-			btc.erase(0, 1);
-			btcEx.getAmount(date, btc);
-
-		}
-		catch (std::exception& e)
-		{
-			std::cerr << "Error: " << e.what()  << std::endl;
+			pfile.getDateAndBtc(line, date, btc);
+			try
+			{
+				pfile.handlingErrors(line, &data);
+	   			pfile.checkValues(line, &data);
+				date.erase(date.length() - 1);
+				btc.erase(0, 1);
+				btcEx.getAmount(date, btc);
+			}
+			catch (std::exception& e)
+			{
+				std::cerr << "Error: " << e.what()  << std::endl;
+			}
 		}
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/23 17:24:45 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/12/26 11:28:58 by ayakoubi         ###   ########.fr       */
+/*   Updated: 2024/02/26 18:04:42 by ayakoubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,5 +52,5 @@ void	BitcoinExchange::getAmount(std::string date, std::string btc)
 
 	it = btcMap.lower_bound(date);
 	ss >> btcNbr;
-	std::cout << date << " => " << btcNbr * it->second << std::endl;
+	std::cout << date << " => " << btcNbr << " = " << it->second * btcNbr << std::endl;
 }	

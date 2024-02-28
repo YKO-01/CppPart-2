@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   MutantStack.hpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ayakoubi <ayakoubi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 12:46:08 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/12/14 10:36:06 by ayakoubi         ###   ########.fr       */
+/*   Updated: 2024/01/27 09:04:27 by ayakoubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,6 @@ class MutantStack : public std::stack<T>
 		MutantStack(const MutantStack& copy);
 		~MutantStack();
 		MutantStack& operator = (const MutantStack& copy);
-		typedef std::allocator_traits<__pointer_allocator> traits;
-		class iterator
-		{
-			private :
-				traits::pointer ptr;
-		}
 		typedef typename std::stack<T>::container_type::iterator		iterator;
 		iterator begin();
 		iterator end();

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Span.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+        */
+/*   By: ayakoubi <ayakoubi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/08 12:37:43 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/12/10 11:52:37 by ayakoubi         ###   ########.fr       */
+/*   Updated: 2024/01/25 20:35:20 by ayakoubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 // =============================================================================
 Span::Span()
 {
+	N = 0;
 }
 
 Span::Span(unsigned int n) : N(n)
@@ -129,4 +130,17 @@ int	Span::longestSpan()
 		std::cout << str << std::endl;
 	}
 	return (false);
+}
+
+// __ Add Range ________________________________________________________________
+// =============================================================================
+void	Span::addRange(std::vector<int>::iterator start, std::vector<int>::iterator end)
+{
+	if (start > end)
+		throw "this operation invalid";
+	while (start != end)
+	{
+		addNumber(*start);
+		start++;
+	}
 }

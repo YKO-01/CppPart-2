@@ -6,13 +6,11 @@
 /*   By: ayakoubi <ayakoubi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 08:56:27 by ayakoubi          #+#    #+#             */
-/*   Updated: 2024/01/24 11:03:02 by ayakoubi         ###   ########.fr       */
+/*   Updated: 2024/02/20 10:38:52 by ayakoubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "List.hpp"
-
-int compare = 0;
 
 // __ Constructurs _____________________________________________________________
 // =============================================================================
@@ -27,7 +25,6 @@ List::List(char **arg)
 	i = -1;
 	while (arg[++i])
 		_list.push_back(std::atoi(arg[i]));
-	compare = 0;
 }
 
 // __ Copy Constructure ________________________________________________________
@@ -58,8 +55,6 @@ List& List::operator = (const List& copy)
 void	List::sortlist()
 {
 	dlist::iterator dit;
-	std::cout << "before:\t";
-	printList();
 	clock_t start = clock();	
 	insertionList();
 	clock_t end = clock();
@@ -70,10 +65,7 @@ void	List::sortlist()
 		_list.push_back(*(dit->begin()));
 		dit++;
 	}
-	std::cout << "after:\t";
-	printList();
-	std::cout << compare << std::endl;
-	std::cout << "Time to process a range of " << _list.size() << "elements with std::[..] : " << duration << " us" << std::endl;
+	std::cout << "Time to process a range of " << _list.size() << " elements with std::list : " << duration << " us" << std::endl;
 }
 
 
@@ -167,7 +159,6 @@ void	List::stockRest(dlist& tmp, int& var)
 // =============================================================================
 int	comp(const list& main_chain, const list& value)
 {
-	compare++;
 	return (main_chain.back() <= value.back());
 }
 
@@ -372,10 +363,7 @@ void	List::sortPairList()
 		{
 			tmp = advanceIterator(_dlist, dit, 1);
 			if (dit->size() == tmp->size() && dit->back() >= tmp->back())
-			{
-				compare++;
 				dit->swap(*(tmp));
-			}
 			dit++;
 		}
 		if (dit == _dlist.end())

@@ -6,7 +6,7 @@
 /*   By: ayakoubi <ayakoubi@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/22 16:46:03 by ayakoubi          #+#    #+#             */
-/*   Updated: 2023/12/23 19:28:20 by ayakoubi         ###   ########.fr       */
+/*   Updated: 2024/02/25 22:20:01 by ayakoubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,7 @@ class ParsingFile
 		ParsingFile();
 		~ParsingFile();
 	
-		bool	openFile(std::ifstream& file, char *arg);
-		void	parsingLine(std::string line);
-		void	splitLine(std::string line, int i, int j, char **str, char c);
+		void	getDateAndBtc(std::string line, std::string &date, std::string &btc);
 		void	handlingErrors(std::string line, t_data *data);
 		bool	validFormat(std::string str, std::string format);
 		void	checkValues(std::string line, t_data *data);

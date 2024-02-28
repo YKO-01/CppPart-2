@@ -6,13 +6,11 @@
 /*   By: ayakoubi <ayakoubi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/23 09:00:23 by ayakoubi          #+#    #+#             */
-/*   Updated: 2024/01/24 10:57:09 by ayakoubi         ###   ########.fr       */
+/*   Updated: 2024/02/20 10:38:12 by ayakoubi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "SVector.hpp"
-
-int comparasion = 0;
 
 // __ Constructurs _____________________________________________________________
 // =============================================================================
@@ -27,7 +25,6 @@ SVector::SVector(char **arg)
 	i = -1;
 	while (arg[++i])
 		vec.push_back(std::atoi(arg[i]));
-	comparasion = 0;
 }
 
 // __ Copy Constructure ________________________________________________________
@@ -72,8 +69,7 @@ void	SVector::sortVector()
 	}
 	std::cout << "after:\t";
 	print();
-	std::cout << comparasion << std::endl;
-	std::cout << "Time to process a range of " << vec.size() << "elements with std::[..] : " << duration << " us" << std::endl;
+	std::cout << "Time to process a range of " << vec.size() << " elements with std::vector : " << duration << " us" << std::endl;
 }
 
 int 	SVector::getCountPair()
@@ -160,7 +156,6 @@ void	SVector::stockRest(dvector& tmp, int& var)
 // =============================================================================
 int	comp(const vector& main_chain, const vector& value)
 {
-	comparasion++;
 	return (main_chain.back() <= value.back());
 }
 
@@ -376,10 +371,7 @@ void	SVector::sortPair()
 		{
 			tmp = dit + 1;
 			if (dit->size() == tmp->size() && dit->back() >= tmp->back())
-			{
-				comparasion++;
 				dit->swap(*(tmp));
-			}
 			dit++;
 		}
 		if (dit == dvec.end())

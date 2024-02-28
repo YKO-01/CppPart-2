@@ -1,19 +1,14 @@
 #ifndef EASYFIND_TPP
 #define EASYFIND_TPP
 
-
 template <typename T>
-T	easyfind(std::vector<T>first, int second)
+typename T::iterator	easyfind(T &arr, int found)
 {
-	int i;
-	i = -1;
-	while (++i < (int)first.size())
-	{
-		if (first[i] == second)
-			return (i);
-	}
-	throw "element not found";
-
+		
+	typename T::iterator it = std::find(arr.begin(), arr.end(), found);
+		if (it == arr.end())
+		throw ("NOT FOUND");
+	return it;
 }
 
 #endif
